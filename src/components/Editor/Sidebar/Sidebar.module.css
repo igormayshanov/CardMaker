@@ -1,0 +1,7 @@
+.sidebar {
+    grid-area: toolbar;
+    background-color: whitesmoke;
+    height: auto;
+  }
+  
+  

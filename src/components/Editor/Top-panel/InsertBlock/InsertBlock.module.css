@@ -1,0 +1,16 @@
+.InsertBlock
+{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.InsertBlockElements
+{
+    display: flex;
+}
+
+.InsertBlockText
+{
+    text-align: center;
+}

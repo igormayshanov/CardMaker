@@ -1,0 +1,7 @@
+.canvas {
+    grid-area: canvas;
+    border: 1px dotted black;
+    background: white;
+    width: 800px;
+    height: 600px;
+}

@@ -1,0 +1,13 @@
+.canvasSize {
+  display: flex;
+  flex-direction: column;
+}
+
+.canvasSize__item {
+    margin: 5px 10px;
+  }
+  
+  .canvasSize__item input{
+    resize: horizontal;
+    width: 50px;
+  }

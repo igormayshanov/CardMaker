@@ -1,0 +1,33 @@
+.historyButton {
+  color: #000;
+  font-size: 38px;
+  text-decoration: none;
+  user-select: none;
+  padding: 0 5px;
+  outline: none;
+  border-radius: 2px;
+}
+
+.historyButton::before {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  padding-right: 5px;
+}
+
+.historyButton:hover {
+  background: linear-gradient(#dcdce4, #bdc4cc);
+  box-shadow:
+    inset rgba(0, 0, 0, .5) 0 -1px 1px,
+    inset rgba(0, 0, 0, .2) 0 1px,
+    inset #fff 0 2px,
+    rgba(0, 0, 0, .2) 0 1px 1px;
+}
+
+.historyButton:active {
+  background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .1));
+  box-shadow:
+    inset rgba(0, 0, 0, .8) 0 1px 2px,
+    inset rgba(0, 0, 0, .05) 0 -1px 0,
+    #fff 0 1px 1px;
+}
