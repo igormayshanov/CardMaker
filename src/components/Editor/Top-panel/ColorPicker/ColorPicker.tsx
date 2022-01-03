@@ -1,13 +1,23 @@
-import React, { FC } from 'react';
+import { connect } from 'react-redux';
+import { setBackgroundColor } from '../../../../store/actionCreators/actionCreators';
 import style from './ColorPicker.module.css';
 
-const ColorPicker: FC = () => {
+const ColorPicker = (props: dispatchProps) => {
     
     return (
         <div className={style.colorPicker}>
-            <input className={style.activeColors} type="color"/>
+            <input className={style.activeColors} type="color" onChange={(e) => props.setBackgroundColor(e.target.value)}/>
         </div>
     );
 }
 
-export default ColorPicker;
+const mapDispatchToProps = (dispatch: Function) => {
+    return {
+        setBackgroundColor: (newColor: string) => dispatch(setBackgroundColor(newColor)),
+    }
+
+}
+
+type dispatchProps = ReturnType<typeof mapDispatchToProps>
+
+export default connect(null, mapDispatchToProps)(ColorPicker);

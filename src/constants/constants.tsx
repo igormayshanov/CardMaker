@@ -1,4 +1,4 @@
-import { canvasSize, canvasType } from "../types/typesTS"
+import { canvasSize } from "../types/types";
 
 export const font = [
     { id: '1', value: 'Arial' },
