@@ -16,17 +16,23 @@ interface InsertBlockListProps {
 const ListItem = (props: IconType) => {
     const item: IconType = props;
     return (
-        <InsertBlockItem key = {item.id} value={item.value} onClick={item.onClick}/>
+        <InsertBlockItem key={item.id} value={item.value} onClick={item.onClick} />
     )
 }
 
 const InsertBlockList = (props: InsertBlockListProps) => {
-   
+
     return (
         <div>
             <List
                 items={icons}
-                renderItem={(icon: IconType) => <ListItem value={icon.value} onClick={icon.onClick} id={icon.id} />}
+                renderItem={(icon: IconType) =>
+                    <ListItem
+                        value={icon.value}
+                        onClick={icon.onClick}
+                        id={icon.id}
+                        key={icon.id}
+                    />}
             />
         </div>
     );

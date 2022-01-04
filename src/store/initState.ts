@@ -43,16 +43,16 @@ const circle: circleType = {
 	radius: 40,
 	borderColor: '#ffA0Cf',
 	fillColor: '#3AA0Cf',
-	selected: true,
+	selected: false,
 }
 
 const cardImage: cardImageType = {
-	src: '../../public/logo192.png',
+	src: "https://images.pexels.com/photos/3337209/pexels-photo-3337209.jpeg?cs=srgb&dl=pexels-mo-3337209.jpg&fm=jpg",
 	positionX: 30,
 	positionY: 30,
 	width: 200,
 	height: 300,
-	selected: true,
+	//selected: false,
 }
 
 const cardText: cardTextType = {
@@ -64,7 +64,7 @@ const cardText: cardTextType = {
 	top: 0,
 	width: 200,
 	height: 100,
-	selected: true,
+	selected: false,
 }
 
 const artObj: artObjType = {
@@ -72,42 +72,43 @@ const artObj: artObjType = {
 	selected: false,
 }
 
-const layout1: layoutType = {
-	layout: artObj,
-	selected: true,
-}
+// const artObjTest: layoutType = {
+// 	layout: artObj,
+// 	selected: true,
+// }
 
-const layout2: layoutType = {
-	layout: cardText,
-	selected: true,
-}
+// const textTest: layoutType = {
+// 	layout: cardText,
+// 	selected: true,
+// }
 
-const layout3: layoutType = {
-	layout: cardImage,
-	selected: true,
-}
+// const imageTest: layoutType = {
+// 	layout: cardImage,
+// 	selected: true,
+// }
 
-const layouts: layoutsType = [
-	{
-		layout: cardImage,
-		selected: true,
-	},
-	{
-		layout: artObj,
-		selected: true,
-	},
-	{
-		layout: cardText,
-		selected: true,
-	},
-]
+// const layouts: layoutsType = [
+// 	{
+// 		layout: cardImage,
+// 		selected: true,
+// 	},
+// 	{
+// 		layout: artObj,
+// 		selected: true,
+// 	},
+// 	{
+// 		layout: cardText,
+// 		selected: true,
+// 	},
+// ]
 
 // const areaOfCanvas = [{
 // 	layout,
 // }]
+const layouts: layoutsType = [cardImage];
 
 const canvas: canvasType = {
-	layouts,
+	layouts: [cardImage],
 	backgroundColor: '#ff000f',
 	canvasSize: {
 		height: 600,

@@ -5,6 +5,12 @@ export enum EditorActionTypes {
   SET_BACKGROUND_COLOR = "SET_BACKGROUND_COLOR",
   SET_CANVAS_WIDTH = "SET_CANVAS_WIDTH",
   SET_CANVAS_HEIGHT = "SET_CANVAS_HEIGHT",
+  INSERT_IMG = 'INSERT_IMG',
+}
+
+interface InsertImg {
+  type: EditorActionTypes.INSERT_IMG,
+  src: string,
 }
 
 interface SetBackgroundColorAction {
@@ -22,7 +28,14 @@ interface SetCanvasHeightAction {
   height: number,
 }
 
-export type EditorAction = SetBackgroundColorAction | SetCanvasWidthAction | SetCanvasHeightAction;
+export type EditorAction = SetBackgroundColorAction | SetCanvasWidthAction | SetCanvasHeightAction | InsertImg;
+
+export function InsertImg(src: string): EditorAction {
+  return {
+    type: EditorActionTypes.INSERT_IMG,
+    src: src,
+  }
+}
 
 export function SetCanvasWidthAction(newWidth: number): EditorAction {
   return {

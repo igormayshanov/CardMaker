@@ -12,6 +12,10 @@ const Canvas = (props: stateProps) => {
                     width: props.width + 'px',
                     height: props.height + 'px',
                 }}>
+                    {
+                        props.img.map((item, index) =>
+                        <img src={props.img[index].src} alt="" width="189" height="255"/>)
+                    }
             </div>
         </div>
     )
@@ -22,6 +26,7 @@ function mapStateToProps(state: RootState) {
         backgroundColor: state.editor.canvas.backgroundColor,
         width: state.editor.canvas.canvasSize.width,
         height: state.editor.canvas.canvasSize.height,
+        img: state.editor.canvas.layouts,
     };
 };
 

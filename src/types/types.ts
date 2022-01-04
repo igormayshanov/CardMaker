@@ -33,9 +33,10 @@ export type rectangleType = {
     fillColor: string;
     selected: boolean;
 }
+export type figureType = circleType | rectangleType | triangleType;
 
 export type artObjType = {
-    figure: circleType | rectangleType | triangleType;
+    figure: figureType; 
     // x: number;
     // y: number;
     // width: number;
@@ -47,11 +48,11 @@ export type artObjType = {
 
 export type cardImageType = {
     src: string;
-    positionX: number;
-    positionY: number;
-    width: number;
-    height: number;
-    selected: boolean;
+    positionX?: number;
+    positionY?: number;
+    width?: number;
+    height?: number;
+    // selected: boolean;
 }
 
 export type cardTextType = {
@@ -66,12 +67,9 @@ export type cardTextType = {
     selected: boolean;
 }
 
-export type layoutType = {
-    layout: cardTextType | cardImageType | artObjType;
-    selected: boolean;
-}
+export type layoutType = cardImageType /*|cardTextType |  artObjType*/;
 
-export type layoutsType = Array<layoutType>;
+export type layoutsType = Array<cardImageType>;
 
 export type canvasSize = {
     height: number;
@@ -83,7 +81,7 @@ export type canvasSize = {
 }
 
 export type canvasType = {
-    layouts: layoutsType;
+    layouts: Array<cardImageType>;
     //areaOfCanvas: Array<layoutType>;
     backgroundColor: string;
     canvasSize: canvasSize;
