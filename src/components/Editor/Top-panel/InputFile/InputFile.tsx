@@ -1,36 +1,53 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { connect } from 'react-redux';
+import { InsertImg } from '../../../../store/actionCreators/actionCreators';
 import style from './InputFile.module.css';
 
-const InputFile = () => {
+const InputFile = (props: DispatchProps) => {
 
-    const [fileSelected, setFileSelected] = React.useState<File>() // also tried <string | Blob>
+    const inputRef = useRef<HTMLInputElement>(null);
+    const selectedImageUrlRef = useRef<string>();
+    const [loading, setLoading] = useState(false);
 
-    const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
-        const fileList = e.target.files;
-        if (!fileList) return;
-        setFileSelected(fileList[0]);
-    };
-    
-    const uploadFile = function (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
-        if (fileSelected) {
-            const formData = new FormData();
-            formData.append("image", fileSelected, fileSelected.name);
+    function revokeImageUrl () {
+        if (selectedImageUrlRef.current != null) {
+            window.URL.revokeObjectURL(selectedImageUrlRef.current)
         }
-    };
+    }
+
+    function openSelectImageModal() {
+        if (inputRef.current) {
+            setLoading(true);
+            inputRef.current.click()
+        }
+    }
+
+    function updateSelectedImage() {
+        revokeImageUrl();
+        if (inputRef.current && inputRef.current.files) {
+            const image = inputRef.current.files[0];
+            selectedImageUrlRef.current = window.URL.createObjectURL(image);
+            props.InsertImg(selectedImageUrlRef.current);
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => revokeImageUrl, [])
 
     return (
         <label htmlFor="photo" className={style.InputFile}>
             <input
-                accept="img/*"
-                id="image"
-                name="image"
+                ref={inputRef}
+                accept=".jpg,.png"
                 type="file"
                 multiple={false}
-                onChange={handleImageChange}
+                onChange={updateSelectedImage}
+                style={{display: 'none'}}
             />
             <button
                 className={style.button}
-                onClick={uploadFile}
+                onClick={openSelectImageModal} 
+                disabled={loading}
             >
                 Choose Picture
             </button>
@@ -38,4 +55,12 @@ const InputFile = () => {
     )
 }
 
-export default InputFile
+type DispatchProps = ReturnType<typeof mapDispatchToProps>
+
+const mapDispatchToProps = (dispatch: Function) => {
+    return {
+        InsertImg: (newSrc: string) => dispatch(InsertImg(newSrc)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(InputFile);

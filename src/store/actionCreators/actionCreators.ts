@@ -6,6 +6,7 @@ export enum EditorActionTypes {
   SET_CANVAS_WIDTH = "SET_CANVAS_WIDTH",
   SET_CANVAS_HEIGHT = "SET_CANVAS_HEIGHT",
   INSERT_IMG = 'INSERT_IMG',
+  SET_POSITION_BLOCK = "SET_POSITION_BLOCK",
 }
 
 interface InsertImg {
@@ -28,7 +29,21 @@ interface SetCanvasHeightAction {
   height: number,
 }
 
-export type EditorAction = SetBackgroundColorAction | SetCanvasWidthAction | SetCanvasHeightAction | InsertImg;
+interface SetPositionBlock {
+  type: EditorActionTypes.SET_POSITION_BLOCK,
+  x: number,
+  y: number,
+}
+
+export type EditorAction = SetBackgroundColorAction | SetCanvasWidthAction | SetCanvasHeightAction | InsertImg | SetPositionBlock;
+
+export function SetPositionBlock(x: number, y: number) {
+  return {
+    type: 'SET_POSITION_BLOCK',
+    x: x,
+    y: y,
+  }
+}
 
 export function InsertImg(src: string): EditorAction {
   return {

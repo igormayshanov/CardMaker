@@ -21,7 +21,6 @@ const ListItem = (props: IconType) => {
 }
 
 const InsertBlockList = (props: InsertBlockListProps) => {
-
     return (
         <div>
             <List

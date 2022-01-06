@@ -55,6 +55,15 @@ const cardImage: cardImageType = {
 	//selected: false,
 }
 
+const cardImage1: cardImageType = {
+	src: "blob:http://localhost:3000/4fba31e2-f214-4ee0-a4ca-b7bba9cd0029",
+	positionX: 30,
+	positionY: 30,
+	width: 200,
+	height: 300,
+	//selected: false,
+}
+
 const cardText: cardTextType = {
 	value: "hello world",
 	font: "Arial",
@@ -108,7 +117,7 @@ const artObj: artObjType = {
 const layouts: layoutsType = [cardImage];
 
 const canvas: canvasType = {
-	layouts: [cardImage],
+	layouts: [cardImage, cardImage1],
 	backgroundColor: '#ff000f',
 	canvasSize: {
 		height: 600,

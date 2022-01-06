@@ -47,11 +47,11 @@ export type artObjType = {
 // export enum figure { circle, rect, polygon };
 
 export type cardImageType = {
-    src: string;
-    positionX?: number;
-    positionY?: number;
-    width?: number;
-    height?: number;
+    src?: string;
+    positionX: number;
+    positionY: number;
+    width: number;
+    height: number;
     // selected: boolean;
 }
 
