@@ -21,7 +21,7 @@ export type circleType = {
     radius: number;
     borderColor: string;
     fillColor: string;
-    selected: boolean;
+    // selected: boolean;
 }
 
 export type rectangleType = {
@@ -31,45 +31,50 @@ export type rectangleType = {
     height: number;
     borderColor: string;
     fillColor: string;
-    selected: boolean;
+    // selected: boolean;
 }
 export type figureType = circleType | rectangleType | triangleType;
 
 export type artObjType = {
-    figure: figureType; 
+    kind: kindType.artObj;
+    figure: figureType;
     // x: number;
     // y: number;
     // width: number;
     // height: number;
-    selected: boolean;
+    // selected: boolean;
 }
 
 // export enum figure { circle, rect, polygon };
 
 export type cardImageType = {
-    src?: string;
-    positionX: number;
-    positionY: number;
-    width: number;
-    height: number;
+    kind: kindType.img;
+    src: string;
+    // positionX: number;
+    // positionY: number;
+    // width: number;
+    // height: number;
     // selected: boolean;
 }
 
 export type cardTextType = {
+    kind: kindType.text;
     value: string;
     font: string;
     fontSize: number;
     fontColor: string;
-    left: number;
-    top: number;
-    width: number;
-    height: number;
-    selected: boolean;
+    // left: number;
+    // top: number;
+    // width: number;
+    // height: number;
+    // selected: boolean;
 }
 
-export type layoutType = cardImageType /*|cardTextType |  artObjType*/;
+export enum kindType {img, text, artObj}
 
-export type layoutsType = Array<cardImageType>;
+export type contentType = cardImageType | cardTextType | artObjType;
+
+// export type layoutsType = Array<cardImageType>;
 
 export type canvasSize = {
     height: number;
@@ -79,9 +84,16 @@ export type canvasSize = {
     minWidth: number;
     maxWidth: number;
 }
+export type layoutType = {
+    id: string;
+    position: positionType;
+    width: number;
+    height: number;
+    content: contentType;
+}
 
 export type canvasType = {
-    layouts: Array<cardImageType>;
+    layouts: Array<layoutType>;
     //areaOfCanvas: Array<layoutType>;
     backgroundColor: string;
     canvasSize: canvasSize;

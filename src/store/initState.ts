@@ -1,4 +1,4 @@
-import { artObjType, canvasType, cardImageType, cardTextType, circleType, editorType, layoutsType, layoutType, rectangleType, triangleType } from "../types/types";
+import { artObjType, canvasType, cardImageType, cardTextType, circleType, editorType, kindType, layoutType, rectangleType, triangleType } from "../types/types";
 
 const rectangle: rectangleType = {
 	figure: 'rect',
@@ -10,7 +10,7 @@ const rectangle: rectangleType = {
 	height: 70,
 	borderColor: '#ffA0Cf',
 	fillColor: '#3AA0Cf',
-	selected: false,
+	// selected: false,
 };
 
 const triangle: triangleType = {
@@ -43,42 +43,32 @@ const circle: circleType = {
 	radius: 40,
 	borderColor: '#ffA0Cf',
 	fillColor: '#3AA0Cf',
-	selected: false,
+	// selected: false,
 }
 
 const cardImage: cardImageType = {
+	kind: kindType.img,
 	src: "https://images.pexels.com/photos/3337209/pexels-photo-3337209.jpeg?cs=srgb&dl=pexels-mo-3337209.jpg&fm=jpg",
-	positionX: 30,
-	positionY: 30,
-	width: 200,
-	height: 300,
-	//selected: false,
 }
 
 const cardImage1: cardImageType = {
+	kind: kindType.img,
 	src: "blob:http://localhost:3000/4fba31e2-f214-4ee0-a4ca-b7bba9cd0029",
-	positionX: 30,
-	positionY: 30,
-	width: 200,
-	height: 300,
-	//selected: false,
 }
 
 const cardText: cardTextType = {
+	kind: kindType.text,
 	value: "hello world",
 	font: "Arial",
 	fontSize: 14,
 	fontColor: "black",
-	left: 0,
-	top: 0,
-	width: 200,
-	height: 100,
-	selected: false,
+	// selected: false,
 }
 
 const artObj: artObjType = {
+	kind: kindType.artObj,
 	figure: circle,
-	selected: false,
+	// selected: false,
 }
 
 // const artObjTest: layoutType = {
@@ -114,10 +104,31 @@ const artObj: artObjType = {
 // const areaOfCanvas = [{
 // 	layout,
 // }]
-const layouts: layoutsType = [cardImage];
+// const layouts: layoutsType = [cardImage];
+const layout1: layoutType = {
+	id: "1",
+	position: {
+		x: 0,
+		y: 0
+	},
+	width: 100,
+	height: 100,
+	content: cardImage,
+}
+
+const layout2: layoutType = {
+	id: "2",
+	position: {
+		x: 40,
+		y: 50
+	},
+	width: 50,
+	height: 50,
+	content: cardImage1,
+}
 
 const canvas: canvasType = {
-	layouts: [cardImage, cardImage1],
+	layouts: [layout1, layout2],
 	backgroundColor: '#ff000f',
 	canvasSize: {
 		height: 600,
