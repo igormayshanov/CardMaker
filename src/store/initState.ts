@@ -1,4 +1,4 @@
-import { artObjType, canvasType, cardImageType, cardTextType, circleType, editorType, kindType, layoutType, rectangleType, triangleType } from "../types/types";
+import { artObjType, canvasType, cardImageType, cardTextType, circleType, editorType, kindType, rectangleType, triangleType } from "../types/types";
 
 const rectangle: rectangleType = {
 	figure: 'rect',
@@ -47,27 +47,48 @@ const circle: circleType = {
 }
 
 const cardImage: cardImageType = {
-	kind: kindType.img,
+	id: '4',
+	// kind: kindType.img,
 	src: "https://images.pexels.com/photos/3337209/pexels-photo-3337209.jpeg?cs=srgb&dl=pexels-mo-3337209.jpg&fm=jpg",
+	x: 20,
+	y: 20,
+	width: 100,
+	height: 200,
 }
 
 const cardImage1: cardImageType = {
-	kind: kindType.img,
+	id: "3",
+	// kind: kindType.img,
 	src: "blob:http://localhost:3000/4fba31e2-f214-4ee0-a4ca-b7bba9cd0029",
+	x: 50,
+	y: 30,
+	width: 50,
+	height: 30,
 }
 
 const cardText: cardTextType = {
+	id: '2',
 	kind: kindType.text,
 	value: "hello world",
 	font: "Arial",
 	fontSize: 14,
 	fontColor: "black",
+	x: 20,
+	y: 30,
+	width: 50,
+	height: 30,
+
 	// selected: false,
 }
 
 const artObj: artObjType = {
+	id: '2',
 	kind: kindType.artObj,
 	figure: circle,
+	x: 20,
+	y: 30,
+	width: 50,
+	height: 30,
 	// selected: false,
 }
 
@@ -105,39 +126,18 @@ const artObj: artObjType = {
 // 	layout,
 // }]
 // const layouts: layoutsType = [cardImage];
-const layout1: layoutType = {
-	id: "1",
-	position: {
-		x: 0,
-		y: 0
-	},
-	width: 100,
-	height: 100,
-	content: cardImage,
-}
-
-const layout2: layoutType = {
-	id: "2",
-	position: {
-		x: 40,
-		y: 50
-	},
-	width: 50,
-	height: 50,
-	content: cardImage1,
-}
 
 const canvas: canvasType = {
-	layouts: [layout1, layout2],
+	ImgContent: [cardImage1, cardImage],
+	TextContent: [cardText],
+	ArtObjContent: [artObj],
 	backgroundColor: '#ff000f',
-	canvasSize: {
-		height: 600,
-		width: 800,
-		minHeight: 100,
-		maxHeight: 1080,
-		minWidth: 100,
-		maxWidth: 1980,
-	},
+	height: 600,
+	width: 800,
+	minHeight: 100,
+	maxHeight: 1080,
+	minWidth: 100,
+	maxWidth: 1980,
 }
 
 // const template = {

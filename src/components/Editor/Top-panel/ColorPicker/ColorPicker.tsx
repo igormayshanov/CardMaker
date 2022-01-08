@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setBackgroundColor } from '../../../../store/actionCreators/actionCreators';
+import { setBackgroundColor } from '../../../../store/actionCreators/editorActionCreator';
 import style from './ColorPicker.module.css';
 
 const ColorPicker = (props: dispatchProps) => {

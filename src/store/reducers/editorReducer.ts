@@ -1,57 +1,31 @@
-import { isTemplateSpan } from "typescript";
-import { editorType } from "../../types/types";
-import { EditorAction, EditorActionTypes } from "../actionCreators/actionCreators";
+import { canvasType, editorType } from "../../types/types";
+import { ImgAction } from "../actionCreators/imgActionCreator";
 import { defaultEditor } from "../initState";
+import bgColorReducer from "./bgColorReducer";
+import { heightReducer, widthReducer } from "./canvasSizeReduser";
+import { ImgContentReducer } from "./imgReducer";
+import { CanvasAction, CanvasActionType } from "../actionCreators/editorActionCreator";
 
-export const editorReducer = (editor: editorType = defaultEditor, action: EditorAction): editorType => {
-    switch (action.type) {
-        // case EditorActionTypes.SET_POSITION_BLOCK:
-        //     return {
-        //         ...editor,
-        //         canvas: {
-        //             ...editor.canvas,
-        //             layouts: editor.canvas.layouts.concat({positionX: action.x, positionY: action.y})
-        //         }
-        //     }
-        case EditorActionTypes.INSERT_IMG:
-            return {
-                ...editor,
-                canvas: {
-                    ...editor.canvas,
-                    layouts: editor.canvas.layouts.concat({src: action.src , width: 100, height: 100, positionX: 0, positionY:0})
-                }
-            }
-        case EditorActionTypes.SET_CANVAS_WIDTH:
-return {
-    ...editor,
-    canvas: {
-        ...editor.canvas,
-        canvasSize: {
-            ...editor.canvas.canvasSize,
-            width: action.width,
-        }
-    }
+export type EditorAction = CanvasAction | ImgAction;
+
+export const canvasReducer = (canvas: canvasType, action: EditorAction): canvasType => {
+    return {
+        width: widthReducer(canvas.width, action as CanvasAction),
+        height: heightReducer(canvas.height, action as CanvasAction),
+        maxHeight: defaultEditor.canvas.maxHeight,
+        minHeight: defaultEditor.canvas.minHeight,
+        maxWidth: defaultEditor.canvas.maxWidth,
+        minWidth: defaultEditor.canvas.minWidth,
+        ImgContent: ImgContentReducer(canvas.ImgContent, action as ImgAction),
+        ArtObjContent: defaultEditor.canvas.ArtObjContent,
+        TextContent: defaultEditor.canvas.TextContent,
+        backgroundColor: bgColorReducer(canvas.backgroundColor, action as CanvasAction)
+    };
 }
-        case EditorActionTypes.SET_CANVAS_HEIGHT:
-return {
-    ...editor,
-    canvas: {
-        ...editor.canvas,
-        canvasSize: {
-            ...editor.canvas.canvasSize,
-            height: action.height,
-        }
-    }
+
+export const editorReducer = (editor: editorType = {} as editorType, action: EditorAction): editorType => {
+    return {
+        canvas: canvasReducer(editor.canvas, action)
+    };
 }
-        case EditorActionTypes.SET_BACKGROUND_COLOR:
-return {
-    ...editor,
-    canvas: {
-        ...editor.canvas,
-        backgroundColor: action.color
-    }
-}
-        default:
-return editor
-    }
-}
+

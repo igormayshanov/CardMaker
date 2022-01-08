@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux';
-import { InsertImg } from '../../../../store/actionCreators/actionCreators';
+import { InsertImg } from '../../../../store/actionCreators/imgActionCreator';
 import style from './InputFile.module.css';
 
 const InputFile = (props: DispatchProps) => {

@@ -21,8 +21,8 @@ const Canvas = (props: Props) => {
 function mapStateToProps(state: RootState) {
     return {
         backgroundColor: state.editor.canvas.backgroundColor,
-        width: state.editor.canvas.canvasSize.width,
-        height: state.editor.canvas.canvasSize.height,
+        width: state.editor.canvas.width,
+        height: state.editor.canvas.height,
     };
 };
 

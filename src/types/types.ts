@@ -4,6 +4,11 @@ export type positionType = {
     y: number;
 }
 
+export type sizeType = {
+    width: number;
+    height: number
+}
+
 export type triangleType = {
     figure: 'polygon';
     points: {
@@ -38,24 +43,16 @@ export type figureType = circleType | rectangleType | triangleType;
 export type artObjType = {
     kind: kindType.artObj;
     figure: figureType;
-    // x: number;
-    // y: number;
-    // width: number;
-    // height: number;
     // selected: boolean;
-}
+} & genericBlockFieldsType
 
 // export enum figure { circle, rect, polygon };
 
 export type cardImageType = {
-    kind: kindType.img;
+    // kind: kindType.img;
     src: string;
-    // positionX: number;
-    // positionY: number;
-    // width: number;
-    // height: number;
     // selected: boolean;
-}
+} & genericBlockFieldsType
 
 export type cardTextType = {
     kind: kindType.text;
@@ -63,43 +60,54 @@ export type cardTextType = {
     font: string;
     fontSize: number;
     fontColor: string;
-    // left: number;
-    // top: number;
-    // width: number;
-    // height: number;
     // selected: boolean;
-}
+} & genericBlockFieldsType
 
-export enum kindType {img, text, artObj}
+export type genericBlockFieldsType = {
+    id: string;
+} & positionType & sizeType
 
-export type contentType = cardImageType | cardTextType | artObjType;
+export enum kindType { img, text, artObj }
+
+//export type contentType = cardImageType | cardTextType | artObjType;
 
 // export type layoutsType = Array<cardImageType>;
 
 export type canvasSize = {
-    height: number;
-    width: number;
     minHeight: number;
     maxHeight: number;
     minWidth: number;
     maxWidth: number;
-}
-export type layoutType = {
-    id: string;
-    position: positionType;
-    width: number;
-    height: number;
-    content: contentType;
-}
+} & sizeType
+// export type ArtObjContentType = {
+//     id: string;
+//     position: positionType;
+//     size: sizeType;
+//     content: artObjType;
+// }
+
+// export type ImgContentType = {
+//     id: string;
+//     position: positionType;
+//     size: sizeType;
+//     content: cardImageType;
+// }
+
+// export type TextContentType = {
+//     id: string;
+//     position: positionType;
+//     size: sizeType;
+//     content: cardTextType;
+// }
 
 export type canvasType = {
-    layouts: Array<layoutType>;
+    TextContent: Array<cardTextType>;
+    ImgContent: Array<cardImageType>;
+    ArtObjContent: Array<artObjType>;
     //areaOfCanvas: Array<layoutType>;
     backgroundColor: string;
-    canvasSize: canvasSize;
-}
+} & canvasSize
 
 export interface editorType {
     canvas: canvasType;
 }
-
