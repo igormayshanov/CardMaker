@@ -1,11 +1,39 @@
-export function setID() {
-    return [gen(2), gen(1), gen(1), gen(1), gen(3)].join("-");
+import { contentType } from "../types/types";
+
+export function generateID() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);;
   }
   
-  function gen(count: number) {
-    let out = "";
-    for (let i: number = 0; i < count; i++) {
-      out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+
+
+  // проверка выделен ли блок
+export function isSelectedBlock(id: string | null): boolean {
+  return Boolean(id)
+}
+
+// установка значений полю/полям одного элемента из списка элементов
+export function setBlockFields(contentBlock: contentType[], id: string, modifiableFields: object): contentType[] {
+  let newCotentBlock: contentType[] = [];
+  contentBlock.forEach((component: contentType) => {
+    if (component.id === id) {
+      newCotentBlock.push({
+        ...component,
+        ...modifiableFields,
+      });
+    } else {
+      newCotentBlock.push(component);
     }
-    return out;
-  }
+  });
+  return newCotentBlock;
+}
+
+// получить индекс элемента по id
+export function getIndexById(contentBlock: contentType[], id: string): number {
+  let currentIndex: number = -1;
+  contentBlock.forEach((item: contentType, index: number) => {
+    if (item.id === id) {
+      currentIndex = index;
+    }
+  });
+  return currentIndex;
+}

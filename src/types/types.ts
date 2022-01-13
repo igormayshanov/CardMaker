@@ -44,7 +44,7 @@ export type artObjType = {
     kind: kindType.artObj;
     figure: figureType;
     // selected: boolean;
-} & genericBlockFieldsType
+} & genericBlockFieldsType & sizeType
 
 // export enum figure { circle, rect, polygon };
 
@@ -52,24 +52,25 @@ export type cardImageType = {
     // kind: kindType.img;
     src: string;
     // selected: boolean;
-} & genericBlockFieldsType
+} & genericBlockFieldsType & sizeType
 
 export type cardTextType = {
     kind: kindType.text;
     value: string;
-    font: string;
-    fontSize: number;
+    fontFamily: string;
+    fontSize: string;
     fontColor: string;
+    fontWeight: string;
     // selected: boolean;
 } & genericBlockFieldsType
 
 export type genericBlockFieldsType = {
     id: string;
-} & positionType & sizeType
+} & positionType
 
 export enum kindType { img, text, artObj }
 
-//export type contentType = cardImageType | cardTextType | artObjType;
+export type contentType = cardImageType | cardTextType | artObjType;
 
 // export type layoutsType = Array<cardImageType>;
 
@@ -110,4 +111,5 @@ export type canvasType = {
 
 export interface editorType {
     canvas: canvasType;
+    selectedId: string | null;
 }

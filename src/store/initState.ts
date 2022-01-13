@@ -56,28 +56,17 @@ const cardImage: cardImageType = {
 	height: 200,
 }
 
-const cardImage1: cardImageType = {
-	id: "3",
-	// kind: kindType.img,
-	src: "blob:http://localhost:3000/4fba31e2-f214-4ee0-a4ca-b7bba9cd0029",
-	x: 50,
-	y: 30,
-	width: 50,
-	height: 30,
-}
 
 const cardText: cardTextType = {
 	id: '2',
 	kind: kindType.text,
 	value: "hello world",
-	font: "Arial",
-	fontSize: 14,
-	fontColor: "black",
+	fontFamily: "Arial",
+	fontSize: '20',
+	fontColor: "#3AA0Cf",
+	fontWeight: '400',
 	x: 20,
 	y: 30,
-	width: 50,
-	height: 30,
-
 	// selected: false,
 }
 
@@ -128,7 +117,7 @@ const artObj: artObjType = {
 // const layouts: layoutsType = [cardImage];
 
 const canvas: canvasType = {
-	ImgContent: [cardImage1, cardImage],
+	ImgContent: [cardImage],
 	TextContent: [cardText],
 	ArtObjContent: [artObj],
 	backgroundColor: '#ff000f',
@@ -147,4 +136,5 @@ const canvas: canvasType = {
 export const defaultEditor: editorType = {
 	//template,
 	canvas,
+	selectedId: null,
 }

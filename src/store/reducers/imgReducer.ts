@@ -3,6 +3,7 @@ import { ImgAction, ImgActionTypes } from "../actionCreators/imgActionCreator"
 import { defaultEditor } from "../initState"
 
 const defaultSate = defaultEditor.canvas.ImgContent;
+
 export const ImgContentReducer = (state: cardImageType[] = defaultSate, action: ImgAction): cardImageType[] => {
     switch (action.type) {
         case ImgActionTypes.INSERT_IMG:

@@ -1,5 +1,4 @@
-import { setID } from "../function";
-import { store } from "../store";
+import { generateID } from "../function";
 
 export enum ImgActionTypes {
     INSERT_IMG = 'INSERT_IMG',
@@ -20,7 +19,7 @@ export type ImgAction = InsertImgAction;
 export function InsertImg(src: string): InsertImgAction {
     return {
         type: ImgActionTypes.INSERT_IMG,
-        id: setID(),
+        id: generateID(),
         src: src,
         // x: 100,
         // y: 100,

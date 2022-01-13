@@ -1,7 +1,17 @@
 import React from 'react';
 import List from './List';
 import InsertBlockItem from './InsertBlockElement/InsertBlockItem';
-import { icons } from '../../../../constants/constants';
+import { connect } from 'react-redux';
+import { InsertText } from '../../../../store/actionCreators/textActionCreator';
+
+
+
+export const icons = [
+    { id: '1', value: 'InsertImageIcon', onClick: () => { }},
+    { id: '2', value: 'CircleIcon', onClick: () => { }},
+    { id: '3', value: 'RectangleIcon', onClick: () => { }},
+    { id: '4', value: 'TriangleIcon', onClick: () => { }},
+    { id: '5', value: 'TextIcon', onClick: () => { }}]
 
 interface IconType {
     id: string;
@@ -37,4 +47,18 @@ const InsertBlockList = (props: InsertBlockListProps) => {
     );
 }
 
-export default InsertBlockList;
+type DispatchProps = ReturnType<typeof mapDispatchToProps>
+
+const mapDispatchToProps = (dispatch: Function) => {
+    return {
+        insertText: () => dispatch(InsertText()),
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(InsertBlockList);
+
+
+
+
+

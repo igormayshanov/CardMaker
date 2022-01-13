@@ -2,27 +2,29 @@ import { connect } from 'react-redux';
 import { RootState } from '../../../store/store';
 import style from './Canvas.module.css';
 import Img from './Img/Img';
+import Text from './Text/Text';
 import { useDragAndDrop } from './useDragAndDrop';
 
 const Canvas = (props: Props) => {
 
     return (
-            <div id='canvas' className={style.canvas}
-                style={{
-                    background: props.backgroundColor,
-                    width: props.width + 'px',
-                    height: props.height + 'px',
-                }}>
-                <Img></Img>
-            </div>
+        <div id='canvas' className={style.canvas}
+            style={{
+                background: props.backgroundColor,
+                width: props.width + 'px',
+                height: props.height + 'px',
+            }}>
+            <Img />
+            <Text />
+        </div>
     )
 }
 
 function mapStateToProps(state: RootState) {
     return {
-        backgroundColor: state.editor.canvas.backgroundColor,
-        width: state.editor.canvas.width,
-        height: state.editor.canvas.height,
+        backgroundColor: state.backgroundColor,
+        width: state.widthReducer,
+        height: state.heightReducer,
     };
 };
 

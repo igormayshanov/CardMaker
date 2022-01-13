@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import SvgSelector from '../SvgSelector';
 import style from './InsertBlockElement.module.css';
+
 type InsertBlockItemProps = {
     value: string;
     onClick: (e: React.MouseEvent<HTMLOrSVGElement>) => void;

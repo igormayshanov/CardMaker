@@ -2,14 +2,13 @@ import { RefObject, useEffect } from "react";
 import { positionType } from "../../../types/types";
 
 export function useDragAndDrop(
-    block: RefObject<HTMLElement>,
-    defPos: positionType,
-    SetPositionBlock: (x: number, y: number) => void
+    item: RefObject<HTMLElement>,
+    modelPos: positionType,
+    setPosition: (x: number, y: number) => void
 ): void {
-
     useEffect(() => {
 
-        const currentBlock = block.current;
+        const currentItem = item.current;
 
         let startPos: positionType;
 
@@ -31,34 +30,32 @@ export function useDragAndDrop(
                     y: e.pageY - startPos.y
                 }
                 newPos = {
-                    x: defPos.x + delta.x,
-                    y: defPos.y + delta.y
+                    x: modelPos.x + delta.x,
+                    y: modelPos.y + delta.y
                 }
-                isNull(currentBlock).style.left = String(newPos.x) + 'px';
-                isNull(currentBlock).style.top = String(newPos.y) + 'px';
+                isNotNull(currentItem).style.left = String(newPos.x) + 'px';
+                isNotNull(currentItem).style.top = String(newPos.y) + 'px';
             }
         }
 
         function handleMouseUp(): void {
             if (newPos) {
-                SetPositionBlock(newPos.x, newPos.y);
+                setPosition(newPos.x, newPos.y);
             }
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);
         }
 
-
-        isNull(currentBlock).addEventListener("mousedown", handleMousedown);
+        isNotNull(currentItem).addEventListener("mousedown", handleMousedown);
         return () => {
-            if (currentBlock) currentBlock.removeEventListener("mousedown", handleMousedown);
+            if (currentItem) currentItem.removeEventListener("mousedown", handleMousedown);
         };
-    }, [block, defPos, SetPositionBlock]);
+    }, [item, modelPos, setPosition]);
 }
 
-// проверка на !null значение
-export function isNull<T>(value: T | null | undefined): T {
+export function isNotNull<T>(value: T | null | undefined): T {
     if (!value) {
-        throw new Error('${value} is Null!');
+        throw new Error(`${value} is Null!`);
     }
     return value;
 }

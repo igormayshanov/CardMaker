@@ -19,6 +19,7 @@ const DropdownList = (props: DropdownListProps) => {
     const listItems = items.map((item) =>
         <ListItem id={item.id} value={item.value} />
     );
+
     return (
         <select className={style.DropdownList}>{listItems}</select>
     );

@@ -9,16 +9,16 @@ const CanvasSizeInput = (props: propsType) => {
         <div className={style.canvasSize}>
             <input className={style.canvasSize__item}
                 type="number" step="1"
-                min={props.canvas.minWidth}
-                max={props.canvas.maxWidth}
-                value={props.canvas.width}
+                // min={props.minWidth}
+                // max={props.maxWidth}
+                value={props.width}
                 onChange={(e) => props.SetCanvasWidthAction(Number(e.target.value))}
             />
             <input className={style.canvasSize__item}
                 type="number" step="1"
-                min={props.canvas.minHeight}
-                max={props.canvas.maxHeight}
-                value={props.canvas.height}
+                // min={props.canvas.minHeight}
+                // max={props.canvas.maxHeight}
+                value={props.height}
                 onChange={(e) => props.SetCanvasHeightAction(Number(e.target.value))}
             />
         </div>
@@ -27,7 +27,8 @@ const CanvasSizeInput = (props: propsType) => {
 
 function mapStateToProps(state: RootState) {
     return {
-        canvas: state.editor.canvas
+        width: state.widthReducer,
+        height: state.heightReducer,
     }
 };
 

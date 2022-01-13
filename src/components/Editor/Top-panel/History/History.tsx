@@ -2,7 +2,7 @@ import React from 'react';
 import style from './History.module.css';
 
 type HistoryButtonProps = {
-    text: any,
+    text: string,
 }
 const HistoryButton = (props: HistoryButtonProps) => {
     return (
