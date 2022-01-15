@@ -1,9 +1,11 @@
+import { InsertImg } from "../store/actionCreators/imgActionCreator";
+import { insertText } from "../store/actionCreators/textActionCreator";
 import { canvasSize } from "../types/types";
 
 export const fontFamily = [
     { id: '1', value: 'Arial' },
     { id: '2', value: 'Calibri' },
-    // { id: '3', value: 'Times New Roman' },
+    { id: '3', value: 'Times New Roman' },
     { id: '4', value: 'Verdana' },
 ]
 
@@ -38,18 +40,12 @@ export const defaultCanvasSize: canvasSize = {
     maxWidth: 1366,
 }
 export const clickHandler = (e: React.MouseEvent<HTMLOrSVGElement>) => {
-        console.log('hello world!!!');
-    }
-
-export const icons = [
-    { id: '1', value: 'InsertImageIcon', onClick: () => { }},
-    { id: '2', value: 'CircleIcon', onClick: clickHandler},
-    { id: '3', value: 'RectangleIcon', onClick: () => { }},
-    { id: '4', value: 'TriangleIcon', onClick: () => { }},
-    { id: '5', value: 'TextIcon', onClick: () => { }}]
-    
+    console.log('hello world!!!');
+}
 
 
-    
 
-    
+
+
+
+

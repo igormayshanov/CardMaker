@@ -1,15 +1,6 @@
 import { generateID } from "../function";
-import { defaultEditor } from "../initState";
 import { store } from "../store"
-
-export enum TextActionTypes {
-  INSERT_TEXT = 'INSERT_TEXT',
-  SET_FONT_SIZE = 'SET_FONT_SIZE',
-  SET_FONT_COLOR = 'SET_FONT_COLOR',
-  SET_FONT_FAMILY = 'SET_FONT_FAMILY',
-  SET_FONT_WEIGHT = 'SET_FONT_WEIGHT',
-  NEW_CARD_TEXT = 'NEW_CARD_TEXT',
-}
+import { TextActionTypes } from "./TextActionTypes";
 
 interface newCardTextAction {
   type: TextActionTypes.NEW_CARD_TEXT
@@ -18,8 +9,8 @@ interface newCardTextAction {
 interface InsertTextAction {
   type: TextActionTypes.INSERT_TEXT,
   id: string,
-  x: number,
-  y: number,
+  // x: number,
+  // y: number,
 }
 
 interface SetFontFamilyAction {
@@ -44,12 +35,11 @@ interface SetFontWeightAction {
 
 export type TextAction = InsertTextAction | SetFontFamilyAction | SetFontSizeAction | SetFontColorAction | SetFontWeightAction | newCardTextAction;
 
-export function InsertText(): InsertTextAction {
+export function insertText(): InsertTextAction {
+  console.log('insert text');
   return {
     type: TextActionTypes.INSERT_TEXT,
     id: generateID(),
-    x: store.getState().canvas.width / 2,
-    y: store.getState().canvas.height / 2,
   }
 }
 
@@ -87,26 +77,26 @@ export function setFontWeight(fontWeight: string): SetFontWeightAction {
   }
 }
 
-export function setFontBold(isBold: boolean) {
-  return {
-    type: 'SET_BOLD_TEXT',
-    isBold: isBold,
-  }
-}
+// export function setFontBold(isBold: boolean) {
+//   return {
+//     type: 'SET_BOLD_TEXT',
+//     isBold: isBold,
+//   }
+// }
 
-export function setFontItalic(isItalic: boolean) {
-  return {
-    type: 'SET_ITALIC_TEXT',
-    isItalic: isItalic,
-  }
-}
+// export function setFontItalic(isItalic: boolean) {
+//   return {
+//     type: 'SET_ITALIC_TEXT',
+//     isItalic: isItalic,
+//   }
+// }
 
-export function setFontUnderline(isUnderline: boolean) {
-  return {
-    type: 'SET_UNDERLINE_TEXT',
+// export function setFontUnderline(isUnderline: boolean) {
+//   return {
+//     type: 'SET_UNDERLINE_TEXT',
 
-    isUnderline: isUnderline,
-  }
-}
+//     isUnderline: isUnderline,
+//   }
+// }
 
 

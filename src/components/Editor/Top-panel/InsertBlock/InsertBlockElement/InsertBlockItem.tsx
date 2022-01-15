@@ -4,15 +4,14 @@ import style from './InsertBlockElement.module.css';
 
 type InsertBlockItemProps = {
     value: string;
-    onClick: (e: React.MouseEvent<HTMLOrSVGElement>) => void;
+    onClick: any;
 }
 
 const InsertBlockItem: FC<InsertBlockItemProps> = ({ value, onClick }) => {
     return (
         <div className={style.InsertBlockElement}>
-            <div className={style.InsertBlockElementIcon}>
-                <SvgSelector id={value}/>
-                onClick = {onClick}
+            <div className={style.InsertBlockElementIcon} onClick = {onClick}>
+               <SvgSelector id={value} />
             </div>
         </div>
     );

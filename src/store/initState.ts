@@ -58,7 +58,7 @@ const cardImage: cardImageType = {
 
 
 const cardText: cardTextType = {
-	id: '2',
+	id: 'x12ertqw',
 	kind: kindType.text,
 	value: "hello world",
 	fontFamily: "Arial",

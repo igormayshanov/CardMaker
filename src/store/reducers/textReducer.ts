@@ -1,6 +1,7 @@
 import { act } from "react-dom/test-utils";
 import { cardTextType, kindType } from "../../types/types";
-import { TextAction, TextActionTypes } from "../actionCreators/textActionCreator";
+import { TextAction } from "../actionCreators/textActionCreator";
+import { TextActionTypes } from "../actionCreators/TextActionTypes";
 import { defaultEditor } from "../initState";
 
 type InsertTextType = {
@@ -9,16 +10,14 @@ type InsertTextType = {
     fontSize: string,
     fontFamily: string,
     fontWeight: string,
-    x: string,
-    y: string,
+    x: number,
+    y: number,
 }
 
-const defaultTextArray = defaultEditor.canvas.TextContent;
-
 const defaultState: InsertTextType = {
-    TextArray: defaultTextArray,
-    x: '250px',
-    y: '400px',
+    TextArray: defaultEditor.canvas.TextContent,
+    x: 250,
+    y: 400,
     fontWeight: '500',
     fontColor: '#000000',
     fontFamily: 'Arial',
@@ -30,17 +29,18 @@ export const TextContentReducer = (state: InsertTextType = defaultState, action:
         case TextActionTypes.INSERT_TEXT:
             return {
                 ...state,
-                TextArray: state.TextArray.concat({
-                    id: action.id,
-                    kind: kindType.text,
-                    value: 'Text...',
-                    x: action.x,
-                    y: action.y,
-                    fontWeight: state.fontWeight,
-                    fontColor: state.fontColor,
-                    fontFamily: state.fontFamily,
-                    fontSize: state.fontSize,
-                })
+                TextArray: state.TextArray.concat
+                    ({
+                        kind: kindType.text,
+                        value: 'Text...',
+                        x: state.x,
+                        y: state.y,
+                        fontWeight: state.fontWeight,
+                        fontColor: state.fontColor,
+                        fontFamily: state.fontFamily,
+                        fontSize: state.fontSize,
+                        id: action.id,
+                    }),
             };
         case TextActionTypes.NEW_CARD_TEXT:
             return {

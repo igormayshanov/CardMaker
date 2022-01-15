@@ -2,21 +2,14 @@ import React from 'react';
 import List from './List';
 import InsertBlockItem from './InsertBlockElement/InsertBlockItem';
 import { connect } from 'react-redux';
-import { InsertText } from '../../../../store/actionCreators/textActionCreator';
-
-
-
-export const icons = [
-    { id: '1', value: 'InsertImageIcon', onClick: () => { }},
-    { id: '2', value: 'CircleIcon', onClick: () => { }},
-    { id: '3', value: 'RectangleIcon', onClick: () => { }},
-    { id: '4', value: 'TriangleIcon', onClick: () => { }},
-    { id: '5', value: 'TextIcon', onClick: () => { }}]
+import { clickHandler } from '../../../../constants/constants';
+import { InsertImg } from '../../../../store/actionCreators/imgActionCreator';
+import { insertText } from '../../../../store/actionCreators/textActionCreator';
 
 interface IconType {
     id: string;
     value: string;
-    onClick: (e: React.MouseEvent<HTMLOrSVGElement>) => void;
+    onClick: any;
 }
 
 interface InsertBlockListProps {
@@ -30,7 +23,15 @@ const ListItem = (props: IconType) => {
     )
 }
 
-const InsertBlockList = (props: InsertBlockListProps) => {
+const InsertBlockList = (props: DispatchProps) => {
+
+    const icons = [
+        { id: '1', value: 'InsertImageIcon', onClick: props.InsertImg },
+        { id: '2', value: 'CircleIcon', onClick: clickHandler },
+        { id: '3', value: 'RectangleIcon', onClick: clickHandler },
+        { id: '4', value: 'TriangleIcon', onClick: clickHandler },
+        { id: '5', value: 'TextIcon', onClick: props.insertText }
+    ]
     return (
         <div>
             <List
@@ -51,12 +52,13 @@ type DispatchProps = ReturnType<typeof mapDispatchToProps>
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        insertText: () => dispatch(InsertText()),
+        insertText: () => dispatch(insertText()),
+        InsertImg: (newSrc: string) => dispatch(InsertImg(newSrc)),
     }
 }
-
-
 export default connect(null, mapDispatchToProps)(InsertBlockList);
+
+// export default connect()(InsertBlockList);
 
 
 
