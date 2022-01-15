@@ -4,8 +4,9 @@ import { positionType } from "../../../types/types";
 export function useDragAndDrop(
     item: RefObject<HTMLElement>,
     modelPos: positionType,
-    setPosition: (x: number, y: number) => void
+    setPosition: (position: positionType) => void
 ): void {
+
     useEffect(() => {
 
         const currentItem = item.current;
@@ -40,7 +41,7 @@ export function useDragAndDrop(
 
         function handleMouseUp(): void {
             if (newPos) {
-                setPosition(newPos.x, newPos.y);
+                setPosition(newPos);
             }
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);

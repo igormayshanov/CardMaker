@@ -24,6 +24,16 @@ const defaultState: InsertTextType = {
     fontSize: '24'
 }
 
+const changeTextValueById = (contentList: cardTextType[], id: number, str: string): cardTextType[] => {
+    const newContent: cardTextType[] = contentList;
+    newContent.forEach((item: cardTextType, index: number) => {
+        if (index === id) {
+            newContent[index].value = str;
+        }
+    })
+    return newContent;
+}
+
 export const TextContentReducer = (state: InsertTextType = defaultState, action: TextAction): InsertTextType => {
     switch (action.type) {
         case TextActionTypes.INSERT_TEXT:
@@ -42,6 +52,11 @@ export const TextContentReducer = (state: InsertTextType = defaultState, action:
                         id: action.id,
                     }),
             };
+        case TextActionTypes.CHANGE_TEXT:
+            return {
+                ...state,
+                TextArray: changeTextValueById(state.TextArray, action.index, action.value)
+            }
         case TextActionTypes.NEW_CARD_TEXT:
             return {
                 ...state,

@@ -13,6 +13,12 @@ interface InsertTextAction {
   // y: number,
 }
 
+interface ChangeTextAction {
+  type: TextActionTypes.CHANGE_TEXT,
+  index: number,
+  value: string,
+}
+
 interface SetFontFamilyAction {
   type: TextActionTypes.SET_FONT_FAMILY,
   fontFamily: string,
@@ -33,19 +39,32 @@ interface SetFontWeightAction {
   fontWeight: string,
 }
 
-export type TextAction = InsertTextAction | SetFontFamilyAction | SetFontSizeAction | SetFontColorAction | SetFontWeightAction | newCardTextAction;
+export type TextAction = InsertTextAction
+  | SetFontFamilyAction
+  | SetFontSizeAction
+  | SetFontColorAction
+  | SetFontWeightAction
+  | newCardTextAction
+  | ChangeTextAction;
 
 export function insertText(): InsertTextAction {
-  console.log('insert text');
   return {
     type: TextActionTypes.INSERT_TEXT,
     id: generateID(),
   }
 }
 
+export function changeText(newValue: string, id: number): ChangeTextAction {
+  return {
+    type: TextActionTypes.CHANGE_TEXT,
+    index: id,
+    value: newValue,
+  }
+}
+
 export function clearText(): newCardTextAction {
   return {
-      type: TextActionTypes.NEW_CARD_TEXT,
+    type: TextActionTypes.NEW_CARD_TEXT,
   }
 }
 

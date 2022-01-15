@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { RootState } from '../../../store/store';
 import style from './Canvas.module.css';
 import Img from './Img/Img';
-import Text from './Text/Text';
+import ImgCollection from './Img/ImgCollection';
+import TextCollection from './Text/TextCollection';
 import { useDragAndDrop } from './useDragAndDrop';
 
 const Canvas = (props: Props) => {
@@ -14,8 +15,8 @@ const Canvas = (props: Props) => {
                 width: props.width + 'px',
                 height: props.height + 'px',
             }}>
-            <Img />
-            <Text />
+            <ImgCollection />
+            <TextCollection />
         </div>
     )
 }
