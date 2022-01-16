@@ -17,7 +17,7 @@ const ListItem = (props: Item) => {
 const DropdownList = (props: DropdownListProps) => {
     const items: Array<Item> = props.items;
     const listItems = items.map((item) =>
-        <ListItem id={item.id} value={item.value} />
+        <ListItem key={item.id} id={item.id} value={item.value} />
     );
 
     return (

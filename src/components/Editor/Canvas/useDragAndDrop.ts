@@ -4,7 +4,8 @@ import { positionType } from "../../../types/types";
 export function useDragAndDrop(
     item: RefObject<HTMLElement>,
     modelPos: positionType,
-    setPosition: (position: positionType) => void
+    setPosition: (position: positionType, index: number) => void,
+    indexBlock: number,
 ): void {
 
     useEffect(() => {
@@ -34,20 +35,20 @@ export function useDragAndDrop(
                     x: modelPos.x + delta.x,
                     y: modelPos.y + delta.y
                 }
-                isNotNull(currentItem).style.left = String(newPos.x) + 'px';
-                isNotNull(currentItem).style.top = String(newPos.y) + 'px';
+                if (currentItem != null) currentItem.style.left = String(newPos.x) + 'px';
+                if (currentItem != null) currentItem.style.top = String(newPos.y) + 'px';
             }
         }
 
         function handleMouseUp(): void {
             if (newPos) {
-                setPosition(newPos);
+                setPosition(newPos, indexBlock);
             }
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);
         }
 
-        isNotNull(currentItem).addEventListener("mousedown", handleMousedown);
+        if (currentItem != null) currentItem.addEventListener("mousedown", handleMousedown);
         return () => {
             if (currentItem) currentItem.removeEventListener("mousedown", handleMousedown);
         };

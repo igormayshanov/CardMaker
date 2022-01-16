@@ -4,10 +4,10 @@
 }
 
 .canvasSize__item {
-    margin: 5px 10px;
-  }
-  
-  .canvasSize__item input{
-    resize: horizontal;
-    width: 40px;
-  }
+  margin: 5px 10px;
+  width: 50px;
+}
+
+.canvasSize__item input {
+  resize: horizontal;
+}

@@ -3,7 +3,6 @@ import { editorType } from '../../types/types';
 import { defaultEditor } from '../initState';
 import backgroundColor from './bgColorReducer';
 import { heightReducer, widthReducer } from './canvasSizeReducer';
-
 import { ImgContentReducer } from './imgReducer';
 import { TextContentReducer } from './textReducer';
 

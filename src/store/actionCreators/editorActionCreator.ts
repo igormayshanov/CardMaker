@@ -5,7 +5,6 @@ export enum CanvasActionType {
     NEW_CARD = "NEW_CARD",
   }
 
-  
   interface SetBackgroundColorAction {
     type: CanvasActionType.SET_BACKGROUND_COLOR,
     color: string,

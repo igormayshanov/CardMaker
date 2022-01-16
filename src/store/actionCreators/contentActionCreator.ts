@@ -1,3 +1,4 @@
+import { positionType } from "../../types/types";
 import { store } from "../store";
 
 export enum ContentActionType {
@@ -6,9 +7,9 @@ export enum ContentActionType {
   RESET_SELECTED_BLOCK = 'RESET_SELECTED_BLOCK',
 }
 
-interface SetPositionBlock {
+export interface SetPositionBlock {
   type: ContentActionType.SET_POSITION_BLOCK,
-  id: string,
+  id: number,
   x: number,
   y: number,
 }
@@ -37,11 +38,11 @@ export function ResetSelectedBlock() {
   }
 }
 
-export function SetPositionBlock(x: number, y: number) {
+export function SetPositionBlock(position: positionType, id: number): SetPositionBlock {
   return {
-    type: 'SET_POSITION_BLOCK',
-    id: store.getState().selectedId,
-    x: x,
-    y: y,
+    type: ContentActionType.SET_POSITION_BLOCK,
+    id: id,
+    x: position.x,
+    y: position.y,
   }
 }

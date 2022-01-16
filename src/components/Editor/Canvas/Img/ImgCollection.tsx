@@ -1,9 +1,13 @@
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { RootState } from '../../../../store/store';
 import Img from './Img';
 import style from './ImgCollection.module.css';
 
-const ImgCollection = (props: Props) => {
+const ImgCollection = (props: StateProps) => {
+  
+    const hhh = useSelector((state: RootState) => state);
+    console.log(hhh);
+
     return (
         <div className={style.ImgCollection}>
             {
@@ -19,8 +23,6 @@ const ImgCollection = (props: Props) => {
                     />) : undefined
             }
         </div>
-
-
     )
 }
 
@@ -30,14 +32,8 @@ type Props = StateProps;
 
 function mapStateToProps(state: RootState) {
     return {
-        ImgCollection: state.ImgContentReducer
+        ImgCollection: state.ImgContentReducer,
     }
 }
-
-// const mapDispatchToProps = (dispatch: Function) => {
-//     return {
-//         moveImg: (x: number, y: number) => dispatch(moveImg(x, y)),
-//     }
-// }
 
 export default connect(mapStateToProps)(ImgCollection);

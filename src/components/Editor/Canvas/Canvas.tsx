@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import { RootState } from '../../../store/store';
 import style from './Canvas.module.css';
-import Img from './Img/Img';
 import ImgCollection from './Img/ImgCollection';
 import TextCollection from './Text/TextCollection';
-import { useDragAndDrop } from './useDragAndDrop';
 
 const Canvas = (props: Props) => {
 

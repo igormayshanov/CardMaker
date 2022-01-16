@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import List from './List';
 import InsertBlockItem from './InsertBlockElement/InsertBlockItem';
 import { connect } from 'react-redux';
@@ -24,16 +24,51 @@ const ListItem = (props: IconType) => {
 }
 
 const InsertBlockList = (props: DispatchProps) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    const selectedImageUrlRef = useRef<string>();
+    const [loading, setLoading] = useState(false);
 
+    function revokeImageUrl() {
+        if (selectedImageUrlRef.current != null) {
+            window.URL.revokeObjectURL(selectedImageUrlRef.current)
+        }
+    }
+
+    function openSelectImageModal() {
+        if (inputRef.current) {
+            setLoading(true);
+            inputRef.current.click()
+        }
+    }
+
+    function updateSelectedImage() {
+        revokeImageUrl();
+        if (inputRef.current && inputRef.current.files) {
+            const image = inputRef.current.files[0];
+            selectedImageUrlRef.current = window.URL.createObjectURL(image);
+            props.InsertImg(selectedImageUrlRef.current);
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => revokeImageUrl, [])
     const icons = [
-        { id: '1', value: 'InsertImageIcon', onClick: props.InsertImg },
-        { id: '2', value: 'CircleIcon', onClick: clickHandler },
-        { id: '3', value: 'RectangleIcon', onClick: clickHandler },
-        { id: '4', value: 'TriangleIcon', onClick: clickHandler },
-        { id: '5', value: 'TextIcon', onClick: props.insertText }
+        { id: '1', value: 'InsertImageIcon', onClick: openSelectImageModal, },
+        { id: '2', value: 'CircleIcon', onClick: clickHandler},
+        { id: '3', value: 'RectangleIcon', onClick: clickHandler},
+        { id: '4', value: 'TriangleIcon', onClick: clickHandler},
+        { id: '5', value: 'TextIcon', onClick: props.insertText}
     ]
     return (
         <div>
+            <input
+                ref={inputRef}
+                accept=".jpg,.png"
+                type="file"
+                multiple={false}
+                onChange={updateSelectedImage}
+                style={{ display: 'none' }}
+            />
             <List
                 items={icons}
                 renderItem={(icon: IconType) =>

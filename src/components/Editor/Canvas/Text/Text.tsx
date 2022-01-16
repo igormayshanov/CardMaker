@@ -14,11 +14,16 @@ const Text = (props: TextComponentProps & DispatchProps) => {
 
     return (
         <input
-            className={style.Text}
+            // onKeyDown={(e) => (this.style.width = ((this.value.length + 1) * 8) + 'px')}
+            className={style.text}
             onChange={(e) => props.changeText(e.target.value, props.index)}
             type="text"
             defaultValue={props.text.value}
             style={{
+                background: 'none',
+                border: 'none',
+                position: 'absolute',
+                display: 'inline-block',
                 fontSize: props.text.fontSize + 'px',
                 fontFamily: props.text.fontFamily,
                 fontWeight: Number(props.text.fontWeight),
@@ -39,38 +44,3 @@ const mapDispatchToProps = (dispatch: Function) => {
 }
 
 export default connect(null, mapDispatchToProps)(Text);
-
-
-
-// const Text = (props: StateProps) => {
-//     return (
-//         <>
-//         {
-//             (props.textContent.TextArray.length > 0) ?
-//                 props.textContent.TextArray.map((item, index) => <span
-//                     key={index}
-//                     contentEditable="true"
-//                     style={{
-//                         position: 'absolute',
-//                         display: 'inline-block',
-//                         fontSize: props.textContent.TextArray[index].fontSize + 'px',
-//                         fontFamily: props.textContent.TextArray[index].fontFamily,
-//                         fontWeight: Number(props.textContent.TextArray[index].fontWeight),
-//                         color: props.textContent.TextArray[index].fontColor,
-//                         top: props.textContent.y,
-//                         left: props.textContent.x
-//                     }}>{props.textContent.TextArray[index].value}</span> ) : undefined
-//         }
-//         </>
-//     )
-// }
-
-// type StateProps = ReturnType<typeof mapStateToProps>
-
-// function mapStateToProps(state: RootState) {
-//     return {
-//         textContent: state.TextContentReducer
-//     }
-// }
-
-// export default connect(mapStateToProps)(Text);

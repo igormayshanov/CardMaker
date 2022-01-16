@@ -7,8 +7,6 @@ import { fontFamily, fontSize, fontWeights } from '../../../constants/constants'
 import CanvasSize from './CanvasSize/CanvasSize';
 import InsertBlockList from './InsertBlock/InsertBlockList';
 import { connect } from 'react-redux';
-import InputFile from './InputFile/InputFile';
-
 
 
 const TopPanel = () => (
@@ -16,7 +14,6 @@ const TopPanel = () => (
         <HistoryButton text='&#8634;'></HistoryButton>
         <HistoryButton text='&#8635;'></HistoryButton>
         <CanvasSize />
-        <InputFile />
         <InsertBlockList />
         <div className={style.textProperties}>
             <DropdownList items={fontFamily}></DropdownList>

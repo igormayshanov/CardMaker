@@ -7,7 +7,7 @@ type InsertBlockItemProps = {
     onClick: any;
 }
 
-const InsertBlockItem: FC<InsertBlockItemProps> = ({ value, onClick }) => {
+const InsertBlockItem: FC<InsertBlockItemProps> = ({ value, onClick}) => {
     return (
         <div className={style.InsertBlockElement}>
             <div className={style.InsertBlockElementIcon} onClick = {onClick}>
