@@ -4,9 +4,6 @@ import Img from './Img';
 import style from './ImgCollection.module.css';
 
 const ImgCollection = (props: StateProps) => {
-  
-    const hhh = useSelector((state: RootState) => state);
-    console.log(hhh);
 
     return (
         <div className={style.ImgCollection}>
@@ -27,7 +24,6 @@ const ImgCollection = (props: StateProps) => {
 }
 
 type StateProps = ReturnType<typeof mapStateToProps>
-// type DispatchProps = ReturnType<typeof mapDispatchToProps>
 type Props = StateProps;
 
 function mapStateToProps(state: RootState) {

@@ -12,6 +12,8 @@ const TextCollection = (props: StateProps) => {
                         key={index}
                         index={index}
                         text={props.TextCollection.TextArray[index]} 
+                        x={props.TextCollection.TextArray[index].x}
+                        y={props.TextCollection.TextArray[index].y}
                     /> ) : undefined
         }
         </>

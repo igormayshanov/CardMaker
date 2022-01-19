@@ -1,5 +1,6 @@
 import { act } from "react-dom/test-utils";
 import { cardTextType, kindType } from "../../types/types";
+import { ContentActionType } from "../actionCreators/contentActionCreator";
 import { TextAction } from "../actionCreators/textActionCreator";
 import { TextActionTypes } from "../actionCreators/TextActionTypes";
 import { defaultEditor } from "../initState";
@@ -24,15 +25,33 @@ const defaultState: InsertTextType = {
     fontSize: '24'
 }
 
-const changeTextValueById = (contentList: cardTextType[], id: number, str: string): cardTextType[] => {
+const changeTextValueById = (contentList: cardTextType[], id: number, value: string): cardTextType[] => {
     const newContent: cardTextType[] = contentList;
-    newContent.forEach((item: cardTextType, index: number) => {
-        if (index === id) {
-            newContent[index].value = str;
+    return newContent.map((item, index) => {
+        if (index == id) {
+            return {
+                ...item,
+                value,
+            }
         }
+        return item
     })
-    return newContent;
 }
+
+const changePositionById = (contentList: cardTextType[], id: number, x: number, y: number): cardTextType[] => {
+    const newContent: cardTextType[] = contentList;
+    return newContent.map((item, index) => {
+        if (index == id) {
+            return {
+                ...item,
+                x,
+                y,
+            }
+        }
+        return item
+    })
+}
+
 
 export const TextContentReducer = (state: InsertTextType = defaultState, action: TextAction): InsertTextType => {
     switch (action.type) {
@@ -82,7 +101,12 @@ export const TextContentReducer = (state: InsertTextType = defaultState, action:
                 ...state,
                 fontWeight: action.fontWeight,
             };
+        case ContentActionType.SET_POSITION_BLOCK:
+            return {
+                ...state,
+                TextArray: changePositionById(state.TextArray, action.id, action.x, action.y)
+    }
         default:
-            return state;
+return state;
     }
 }

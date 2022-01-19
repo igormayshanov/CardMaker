@@ -18,7 +18,7 @@ export const ImgContentReducer = (state: cardImageType[] = defaultSate, action: 
                     height: action.height,
                 })
         case ImgActionTypes.SET_POSITION_IMG:
-            return state = changePositionById(state, action.id, action.x, action.y);
+            return changePositionById(state, action.id, action.x, action.y);
         default:
             return state;
     }
@@ -26,12 +26,15 @@ export const ImgContentReducer = (state: cardImageType[] = defaultSate, action: 
 
 const changePositionById = (contentList: cardImageType[], id: number, x: number, y: number): cardImageType[] => {
     const newContent: cardImageType[] = contentList;
-    newContent.forEach((item: cardImageType, index: number) => {
-        if (index === id) {
-            newContent[index].x = x;
-            newContent[index].y = y;
+    return newContent.map((item, index) => {
+        if (index == id) {
+            return {
+                ...item,
+                x,
+                y,
+            }
         }
+        return item
     })
-    return newContent;
 }
 

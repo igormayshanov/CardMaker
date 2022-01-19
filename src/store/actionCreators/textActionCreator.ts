@@ -1,5 +1,6 @@
 import { generateID } from "../function";
 import { store } from "../store"
+import { SetPositionBlock } from "./contentActionCreator";
 import { TextActionTypes } from "./TextActionTypes";
 
 interface newCardTextAction {
@@ -45,7 +46,8 @@ export type TextAction = InsertTextAction
   | SetFontColorAction
   | SetFontWeightAction
   | newCardTextAction
-  | ChangeTextAction;
+  | ChangeTextAction
+  | SetPositionBlock;
 
 export function insertText(): InsertTextAction {
   return {
