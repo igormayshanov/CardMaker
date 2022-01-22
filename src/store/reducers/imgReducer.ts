@@ -1,4 +1,5 @@
 import { cardImageType } from "../../types/types"
+import { ContentActionType } from "../actionCreators/contentActionCreator";
 import { ImgAction, ImgActionTypes } from "../actionCreators/imgActionCreator"
 import { defaultEditor } from "../initState"
 
@@ -18,6 +19,8 @@ export const ImgContentReducer = (state: cardImageType[] = defaultSate, action: 
                 })
         case ImgActionTypes.SET_POSITION_IMG:
             return changePositionById(state, action.id, action.x, action.y);
+        case ContentActionType.RESIZE_SELECTED_BLOCK:
+            return resizeElementById(state, action.id, action.width, action.height)
         default:
             return state;
     }
@@ -37,3 +40,17 @@ const changePositionById = (contentList: cardImageType[], id: number, x: number,
     })
 }
 
+
+const resizeElementById = (contentList: cardImageType[], id: number, width: number, height: number): cardImageType[] => {
+    const newContent: cardImageType[] = contentList;
+    return newContent.map((item, index) => {
+        if (index === id) {
+            return {
+                ...item,
+                width,
+                height,
+            }
+        }
+        return item
+    })
+}

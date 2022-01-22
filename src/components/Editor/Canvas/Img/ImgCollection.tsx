@@ -10,6 +10,7 @@ const ImgCollection = (props: StateProps) => {
             {
                 (props.ImgCollection.length > 0) ?
                     props.ImgCollection.map((item, index) => <Img
+                        img={props.ImgCollection[index]}
                         key={index}
                         index={index}
                         src={props.ImgCollection[index].src}

@@ -5,7 +5,7 @@ export function useDragAndDrop(
     item: RefObject<HTMLElement>,
     modelPos: positionType,
     setPosition: (position: positionType, index: number) => void,
-    indexBlock: number,
+    indexItem: number,
 ): void {
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export function useDragAndDrop(
 
         function handleMouseUp(): void {
             if (newPos) {
-                setPosition(newPos, indexBlock);
+                setPosition(newPos, indexItem);
             }
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);
@@ -52,5 +52,5 @@ export function useDragAndDrop(
         return () => {
             if (currentItem) currentItem.removeEventListener("mousedown", handleMousedown);
         };
-    }, [item, modelPos, setPosition, indexBlock]);
+    }, [item, modelPos, setPosition, indexItem]);
 }

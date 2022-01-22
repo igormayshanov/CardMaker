@@ -1,6 +1,7 @@
 import { positionType } from "../../types/types";
 import { generateID } from "../function";
 import { store } from "../store";
+import { ResizeBlock } from "./contentActionCreator";
 
 export enum ImgActionTypes {
     INSERT_IMG = 'INSERT_IMG',
@@ -24,7 +25,7 @@ interface SetPositionImg {
     y: number,
 }
 
-export type ImgAction = InsertImgAction | SetPositionImg;
+export type ImgAction = InsertImgAction | SetPositionImg | ResizeBlock;
 
 
 export function InsertImg(src: string): InsertImgAction {
