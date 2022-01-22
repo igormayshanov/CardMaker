@@ -1,6 +1,5 @@
 import { RefObject, useEffect } from "react";
 import { store } from "../../../store/store";
-import { isNotNull } from "./useDragAndDrop";
 
 export function useStateBlock(
     blockId: string,
@@ -30,7 +29,7 @@ export function useStateBlock(
       }
 
       document.addEventListener("click", handleClickDocument);
-      isNotNull(currentBlock).addEventListener("mousedown", MouseDownBlock);
+      if (currentBlock != null)(currentBlock).addEventListener("mousedown", MouseDownBlock);
       return () => {
         if (currentBlock) currentBlock.removeEventListener("mousedown", MouseDownBlock);
         document.removeEventListener("click", handleClickDocument);

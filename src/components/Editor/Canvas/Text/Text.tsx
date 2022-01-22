@@ -6,7 +6,6 @@ import { cardTextType, positionType } from '../../../../types/types';
 import { useDragAndDrop } from '../useDragAndDrop';
 import style from './Text.module.css';
 
-
 interface TextComponentProps {
     index: number;
     x: number;
@@ -27,13 +26,11 @@ const Text = (props: TextComponentProps & DispatchProps) => {
             background: 'none',
             border: 'none',
             position: 'absolute',
-            // display: 'inline-block',
             left: position.x,
             top: position.y,
         }}
         >
             <input
-                // onKeyDown={(e) => (this.style.width = ((this.value.length + 1) * 8) + 'px')}
                 className={style.text}
                 onChange={(e) => props.changeText(e.target.value, props.index)}
                 type="text"

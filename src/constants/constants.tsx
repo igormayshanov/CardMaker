@@ -29,6 +29,9 @@ export const fontSize = [
     { id: '6', value: '20' },
     { id: '7', value: '22' },
     { id: '8', value: '24' },
+    { id: '8', value: '26' },
+    { id: '8', value: '28' },
+    { id: '8', value: '30' },
 ]
 
 export const defaultCanvasSize: canvasSize = {

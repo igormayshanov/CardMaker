@@ -53,11 +53,11 @@ const InsertBlockList = (props: DispatchProps) => {
 
     useEffect(() => revokeImageUrl, [])
     const icons = [
-        { id: '1', value: 'InsertImageIcon', onClick: openSelectImageModal, },
-        { id: '2', value: 'CircleIcon', onClick: clickHandler},
-        { id: '3', value: 'RectangleIcon', onClick: clickHandler},
-        { id: '4', value: 'TriangleIcon', onClick: clickHandler},
-        { id: '5', value: 'TextIcon', onClick: props.insertText}
+        { id: '1', value: 'InsertImageIcon', onClick: openSelectImageModal},
+        { id: '2', value: 'CircleIcon', onClick: clickHandler },
+        { id: '3', value: 'RectangleIcon', onClick: clickHandler },
+        { id: '4', value: 'TriangleIcon', onClick: clickHandler },
+        { id: '5', value: 'TextIcon', onClick: props.insertText }
     ]
     return (
         <div>

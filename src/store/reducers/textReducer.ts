@@ -41,7 +41,7 @@ const changeTextValueById = (contentList: cardTextType[], id: number, value: str
 const changePositionById = (contentList: cardTextType[], id: number, x: number, y: number): cardTextType[] => {
     const newContent: cardTextType[] = contentList;
     return newContent.map((item, index) => {
-        if (index == id) {
+        if (index === id) {
             return {
                 ...item,
                 x,

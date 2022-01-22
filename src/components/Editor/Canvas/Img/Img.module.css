@@ -2,3 +2,7 @@
     position: "absolute";
     display: block;
 }
+
+.img:hover {
+    cursor: pointer;
+ }

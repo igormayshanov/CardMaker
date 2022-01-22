@@ -4,3 +4,7 @@
     position: 'absolute';
     display: 'inline-block';
 }
+
+.text:hover {
+   cursor: pointer;
+}

@@ -52,12 +52,5 @@ export function useDragAndDrop(
         return () => {
             if (currentItem) currentItem.removeEventListener("mousedown", handleMousedown);
         };
-    }, [item, modelPos, setPosition]);
-}
-
-export function isNotNull<T>(value: T | null | undefined): T {
-    if (!value) {
-        throw new Error(`${value} is Null!`);
-    }
-    return value;
+    }, [item, modelPos, setPosition, indexBlock]);
 }

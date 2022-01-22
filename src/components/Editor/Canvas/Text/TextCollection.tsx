@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { RootState } from '../../../../store/store'
 import Text from './Text';
 
-
 const TextCollection = (props: StateProps) => {
     return ( 
         <>

@@ -1,5 +1,4 @@
-import { canvasType, cardImageType, kindType } from "../../types/types"
-import { ContentActions, ContentActionType } from "../actionCreators/contentActionCreator";
+import { cardImageType } from "../../types/types"
 import { ImgAction, ImgActionTypes } from "../actionCreators/imgActionCreator"
 import { defaultEditor } from "../initState"
 
@@ -27,7 +26,7 @@ export const ImgContentReducer = (state: cardImageType[] = defaultSate, action: 
 const changePositionById = (contentList: cardImageType[], id: number, x: number, y: number): cardImageType[] => {
     const newContent: cardImageType[] = contentList;
     return newContent.map((item, index) => {
-        if (index == id) {
+        if (index === id) {
             return {
                 ...item,
                 x,
