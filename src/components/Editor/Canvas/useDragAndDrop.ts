@@ -4,8 +4,8 @@ import { positionType } from "../../../types/types";
 export function useDragAndDrop(
     item: RefObject<HTMLElement>,
     modelPos: positionType,
-    setPosition: (position: positionType, index: number) => void,
-    indexItem: number,
+    setPosition: (position: positionType, id: string) => void,
+    id: string,
 ): void {
 
     useEffect(() => {
@@ -14,7 +14,7 @@ export function useDragAndDrop(
 
         let startPos: positionType;
 
-        function handleMousedown(e: MouseEvent): void {
+        function handleMouseDown(e: MouseEvent): void {
             startPos = {
                 x: e.pageX,
                 y: e.pageY,
@@ -42,15 +42,15 @@ export function useDragAndDrop(
 
         function handleMouseUp(): void {
             if (newPos) {
-                setPosition(newPos, indexItem);
+                setPosition(newPos, id);
             }
             document.removeEventListener("mousemove", handleMouseMove);
             document.removeEventListener("mouseup", handleMouseUp);
         }
 
-        if (currentItem != null) currentItem.addEventListener("mousedown", handleMousedown);
+        if (currentItem != null) currentItem.addEventListener("mousedown", handleMouseDown);
         return () => {
-            if (currentItem) currentItem.removeEventListener("mousedown", handleMousedown);
+            if (currentItem) currentItem.removeEventListener("mousedown", handleMouseDown);
         };
-    }, [item, modelPos, setPosition, indexItem]);
+    }, [item, modelPos, setPosition, id]);
 }

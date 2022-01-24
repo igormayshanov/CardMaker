@@ -1,14 +1,12 @@
-import React from 'react';
+
 import style from './History.module.css';
+import HistoryButton from './HistoryButton/HistoryButton';
 
-type HistoryButtonProps = {
-    text: string,
-}
-const HistoryButton = (props: HistoryButtonProps) => {
+export const History = () => {
     return (
-        <a href="#" className={style.historyButton}>{props.text}</a>
-    );
-
+        <div className={style.historyBlock}>
+            <HistoryButton text='&#8634;'></HistoryButton>
+            <HistoryButton text='&#8635;'></HistoryButton>
+        </div>
+    )
 }
-
-export default HistoryButton;

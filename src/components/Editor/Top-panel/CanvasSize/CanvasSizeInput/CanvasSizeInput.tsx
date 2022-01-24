@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { SetCanvasHeightAction, SetCanvasWidthAction } from '../../../../../store/actionCreators/editorActionCreator';
 import { RootState } from '../../../../../store/store';
@@ -11,14 +10,14 @@ const CanvasSizeInput = (props: propsType) => {
                 type="number" step="1"
                 // min={props.minWidth}
                 // max={props.maxWidth}
-                value={props.width}
+                value={props.canvas.width}
                 onChange={(e) => props.SetCanvasWidthAction(Number(e.target.value))}
             />
             <input className={style.canvasSize__item}
                 type="number" step="1"
                 // min={props.canvas.minHeight}
                 // max={props.canvas.maxHeight}
-                value={props.height}
+                value={props.canvas.height}
                 onChange={(e) => props.SetCanvasHeightAction(Number(e.target.value))}
             />
         </div>
@@ -27,10 +26,9 @@ const CanvasSizeInput = (props: propsType) => {
 
 function mapStateToProps(state: RootState) {
     return {
-        width: state.widthReducer,
-        height: state.heightReducer,
+        canvas: state.canvasReducer,
     }
-};
+}
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {

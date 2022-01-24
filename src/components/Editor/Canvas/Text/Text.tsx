@@ -7,6 +7,7 @@ import { useDragAndDrop } from '../useDragAndDrop';
 import style from './Text.module.css';
 
 interface TextComponentProps {
+    id: string;
     index: number;
     x: number;
     y: number;
@@ -17,7 +18,7 @@ const Text = (props: TextComponentProps & DispatchProps) => {
 
     const txtBlock = useRef<HTMLImageElement>(null);
     const position: positionType = { x: props.x, y: props.y };
-    useDragAndDrop(txtBlock, position, props.SetPosition, props.index);
+    useDragAndDrop(txtBlock, position, props.SetPosition, props.id);
 
     return (
         <div  onDragStart={(e) => e.preventDefault()}
@@ -32,7 +33,7 @@ const Text = (props: TextComponentProps & DispatchProps) => {
         >
             <input
                 className={style.text}
-                onChange={(e) => props.changeText(e.target.value, props.index)}
+                onChange={(e) => props.changeText(e.target.value, props.id)}
                 type="text"
                 defaultValue={props.text.value}
                 style={{
@@ -57,8 +58,8 @@ type DispatchProps = ReturnType<typeof mapDispatchToProps>
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        changeText: (newValue: string, id: number) => dispatch(changeText(newValue, id)),
-        SetPosition: (position: positionType, id: number) => dispatch(SetPositionBlock(position, id)),
+        changeText: (newValue: string, id: string) => dispatch(changeText(newValue, id)),
+        SetPosition: (position: positionType, id: string) => dispatch(SetPositionBlock(position, id)),
     }
 }
 

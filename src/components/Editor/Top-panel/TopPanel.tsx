@@ -1,29 +1,38 @@
-import React from 'react';
 import style from './TopPanel.module.css';
 import DropdownList from './DropdownList/DropdownList';
 import ColorPicker from './ColorPicker/ColorPicker';
-import HistoryButton from './History/History';
 import { fontFamily, fontSize, fontWeights } from '../../../constants/constants';
 import CanvasSize from './CanvasSize/CanvasSize';
 import InsertBlockList from './InsertBlock/InsertBlockList';
 import { connect } from 'react-redux';
 import { setColorText, setFontFamily, setFontSize, setFontWeight } from '../../../store/actionCreators/textActionCreator';
 import { setBackgroundColor } from '../../../store/actionCreators/editorActionCreator';
+import BackgroundImgInsert from './BackgroundToolbar/BackgroundImgInsert';
+import { History } from './History/History';
 
 
 const TopPanel = (props: DispatchProps) => (
     <div className={style.topPanel}>
-        <HistoryButton text='&#8634;'></HistoryButton>
-        <HistoryButton text='&#8635;'></HistoryButton>
+        <History />
         <CanvasSize />
         <InsertBlockList />
-        <div className={style.textProperties}>
+        <div className={style.blockColumn}>
             <DropdownList elements={fontFamily} getParam={setFontFamily}> </DropdownList>
-            <DropdownList elements={fontSize} getParam={setFontSize}> </DropdownList>
-            <DropdownList elements={fontWeights} getParam={setFontWeight}> </DropdownList>
-            <ColorPicker title="Font color" getParam={setColorText} />
+            <div className={style.blockRow}>
+                <DropdownList elements={fontSize} getParam={setFontSize}> </DropdownList>
+                <DropdownList elements={fontWeights} getParam={setFontWeight}> </DropdownList>
+                <ColorPicker getParam={setColorText} />
+            </div>
+
         </div>
-        <ColorPicker title="Background color" getParam={setBackgroundColor} />
+        <div className={style.blockColumn}>
+            <div className={style.blockRow}>
+                <BackgroundImgInsert />
+                <ColorPicker getParam={setBackgroundColor} />
+            </div>
+            <label>Фон</label>
+        </div>
+
     </div>
 )
 

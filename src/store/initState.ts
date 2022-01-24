@@ -54,6 +54,7 @@ const cardImage: cardImageType = {
 	y: 20,
 	width: 100,
 	height: 200,
+	selected: false,
 }
 
 
@@ -121,6 +122,7 @@ const canvas: canvasType = {
 	TextContent: [cardText],
 	ArtObjContent: [artObj],
 	backgroundColor: '#ff000f',
+	backgroundImg: null,
 	height: 600,
 	width: 800,
 	minHeight: 100,

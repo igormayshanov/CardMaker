@@ -1,5 +1,4 @@
 import { generateID } from "../function";
-import { store } from "../store"
 import { SetPositionBlock } from "./contentActionCreator";
 import { TextActionTypes } from "./TextActionTypes";
 
@@ -16,7 +15,7 @@ interface InsertTextAction {
 
 interface ChangeTextAction {
   type: TextActionTypes.CHANGE_TEXT,
-  index: number,
+  id: string,
   value: string,
 }
 
@@ -56,10 +55,10 @@ export function insertText(): InsertTextAction {
   }
 }
 
-export function changeText(newValue: string, id: number): ChangeTextAction {
+export function changeText(newValue: string, id: string): ChangeTextAction {
   return {
     type: TextActionTypes.CHANGE_TEXT,
-    index: id,
+    id: id,
     value: newValue,
   }
 }

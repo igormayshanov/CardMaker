@@ -1,22 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import List from './List';
-import InsertBlockItem from './InsertBlockElement/InsertBlockItem';
 import { connect } from 'react-redux';
-import { clickHandler } from '../../../../constants/constants';
-import { InsertImg } from '../../../../store/actionCreators/imgActionCreator';
-import { insertText } from '../../../../store/actionCreators/textActionCreator';
+import { SetBackgroundImg, SetCanvasHeightAction, SetCanvasWidthAction } from '../../../../store/actionCreators/editorActionCreator';
 import { RootState } from '../../../../store/store';
 import { canvasType } from '../../../../types/types';
+import InsertBlockItem from '../InsertBlock/InsertBlockElement/InsertBlockItem';
+import List from '../InsertBlock/List';
 
 interface IconType {
     id: string;
     value: string;
     onClick: Function;
 }
-
-// interface InsertBlockListProps {
-//     icons: Array<IconType>;
-// }
 
 const ListItem = (props: IconType) => {
     const item: IconType = props;
@@ -25,13 +19,14 @@ const ListItem = (props: IconType) => {
     )
 }
 
-interface InsertBlockListProps {
-    insertText: () => void,
-    InsertImg: (src: string, width: number, height: number) => void,
+interface BackgroundImgInsertProps {
+    SetBackgroundImg: (src: string) => void,
+    SetCanvasWidthAction: (width: number) => void,
+    SetCanvasHeightAction: (height: number) => void,
     canvas: canvasType,
 }
 
-const InsertBlockList = (props: InsertBlockListProps) => {
+const BackgroundImgInsert = (props: BackgroundImgInsertProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const selectedImageUrlRef = useRef<string>();
     const [loading, setLoading] = useState(false);
@@ -49,25 +44,21 @@ const InsertBlockList = (props: InsertBlockListProps) => {
         }
     }
 
-    function updateSelectedImage() {
-
+    function updateSelectedBgImage() {
         revokeImageUrl();
         if (inputRef.current && inputRef.current.files) {
             const image = inputRef.current.files[0];
             if (image) {
                 selectedImageUrlRef.current = window.URL.createObjectURL(image);
-                let fileReader = new FileReader();
-                fileReader.readAsDataURL(image);
 
                 let newImage = new Image();
                 newImage.src = selectedImageUrlRef.current;
-
-                fileReader.onload = function() {
-                    let readerResult = String(fileReader.result);
-                    newImage.onload = function() {
-                        props.InsertImg(readerResult, newImage.width, newImage.height);
-                    }
+                newImage.onload = function() {
+                    props.SetCanvasWidthAction(newImage.width);
+                    props.SetCanvasHeightAction(newImage.height);
                 }
+
+                props.SetBackgroundImg(selectedImageUrlRef.current);
             }
             setLoading(true);
         }
@@ -76,11 +67,7 @@ const InsertBlockList = (props: InsertBlockListProps) => {
 
     useEffect(() => revokeImageUrl, [])
     const icons = [
-        { id: '1', value: 'InsertImageIcon', onClick: openSelectImageModal },
-        { id: '2', value: 'CircleIcon', onClick: clickHandler },
-        { id: '3', value: 'RectangleIcon', onClick: clickHandler },
-        { id: '4', value: 'TriangleIcon', onClick: clickHandler },
-        { id: '5', value: 'TextIcon', onClick: props.insertText }
+        { id: '1', value: 'InsertImageIcon', onClick: openSelectImageModal},
     ]
     return (
         <div>
@@ -89,7 +76,7 @@ const InsertBlockList = (props: InsertBlockListProps) => {
                 accept=".jpg,.png"
                 type="file"
                 multiple={false}
-                onChange={updateSelectedImage}
+                onChange={updateSelectedBgImage}
                 style={{ display: 'none' }}
             />
             <List
@@ -112,19 +99,15 @@ type Props = StateProps | DispatchProps;
 
 function mapStateToProps(state: RootState) {
     return {
-        canvas: state.canvasReducer,
+       canvas: state.canvasReducer,
     }
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        insertText: () => dispatch(insertText()),
-        InsertImg: (newSrc: string, width: number, height: number) => dispatch(InsertImg(newSrc, width, height)),
+        SetBackgroundImg: (newSrc: string) => dispatch(SetBackgroundImg(newSrc)),
+        SetCanvasWidthAction: (newWidth: number) => dispatch(SetCanvasWidthAction(newWidth)),
+        SetCanvasHeightAction: (newHeight: number) => dispatch(SetCanvasHeightAction(newHeight)),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(InsertBlockList);
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(BackgroundImgInsert);

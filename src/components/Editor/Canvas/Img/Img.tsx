@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux';
-import { ResizeBlock, SetPositionBlock } from '../../../../store/actionCreators/contentActionCreator';
+import { ResizeBlock, SetPositionBlock, SetSelectedBlock } from '../../../../store/actionCreators/contentActionCreator';
 import { SetPositionImg } from '../../../../store/actionCreators/imgActionCreator';
 import { RootState } from '../../../../store/store';
 import { cardImageType, cardTextType, positionType, sizeType } from '../../../../types/types';
@@ -9,6 +9,7 @@ import { useResize } from '../useResizeBlock';
 import style from './Img.module.css';
 
 interface ImgProps {
+    id: string;
     img: cardImageType;
     src: string;
     index: number;
@@ -16,16 +17,17 @@ interface ImgProps {
     y: number;
     width: number;
     height: number;
+    selected: boolean;
 }
 
-const Img = (props: ImgProps & PropsType) => {
+const Img = (props: ImgProps & dispatchPropsType) => {
 
     const img: cardImageType = props.img;
-    let src: string = "";
-    if (img.src) {
-        src = img.src;
-    }
-    const imgStyle = getStyle(img);
+    // let src: string = "";
+    // if (img.src) {
+    //     src = img.src;
+    // }
+    const imgStyle = getBlockStyle(img);
     const imgBlock = useRef<HTMLDivElement>(null);
     const pointLeftTop = useRef<HTMLDivElement>(null);
     const pointRightTop = useRef<HTMLDivElement>(null);
@@ -33,7 +35,7 @@ const Img = (props: ImgProps & PropsType) => {
     const pointRightBottom = useRef<HTMLDivElement>(null);
     const position: positionType = { x: props.x, y: props.y };
     const blockSize: sizeType = { width: props.width, height: props.height }
-    useDragAndDrop(imgBlock, position, props.SetPositionImg, props.index);
+    useDragAndDrop(imgBlock, position, props.SetPositionImg, props.id);
     useResize(
         props.ResizeBlock,
         props.SetPositionImg,
@@ -44,17 +46,20 @@ const Img = (props: ImgProps & PropsType) => {
         imgBlock,
         position,
         blockSize,
-        props.index,
+        props.id,
     )
-
-    //  const select: string = img.id === props.selectBlock ? styles.selected : "";
+    // const setSelectedSelector = (select: string) => {     
+    //     if (select != style.selected) ? style.selected : "";
+    // };
+    const selected: boolean = props.selected === true ? false : true;
+    const select: string = props.selected === true ? style.selected : "";
+   
 
     return (
         <div
-            className={`${style.block} ${style.selected}`}
+            className={`${style.block} ${select}`}
             style={imgStyle}
             ref={imgBlock}
-            // onClick = {(e) => if()}
             onDragStart={(e) => e.preventDefault()}
         // style={{
         //     position: "absolute",
@@ -68,14 +73,11 @@ const Img = (props: ImgProps & PropsType) => {
             <div className={style.pointLeftTop} ref={pointLeftTop}></div>
             <div className={style.pointRightTop} ref={pointRightTop}></div>
             <img
+                onClick={(e) => props.SetSelectedBlock(selected, props.id)}
                 className={style.img}
-                // ref={imgBlock}
-                // onDragStart={(e) => e.preventDefault()}
-                key={props.index}
+                key={props.id}
                 alt=""
                 src={props.src}
-
-
             />
             <div className={style.pointLeftBottom} ref={pointLeftBottom}></div>
             <div className={style.pointRightBottom} ref={pointRightBottom}></div>
@@ -83,24 +85,17 @@ const Img = (props: ImgProps & PropsType) => {
     );
 }
 
-// type statePropsType = ReturnType<typeof mapStateToProps>;
 type dispatchPropsType = ReturnType<typeof mapDispatchToProps>;
-type PropsType = dispatchPropsType;
-
-// function mapStateToProps(state: RootState) {
-//         return {
-//             imgContent: state.contentReducer,
-//         };
-//     };
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        SetPositionImg: (position: positionType, id: number) => dispatch(SetPositionImg(position, id)),
-        ResizeBlock: (newSize: sizeType, id: number) => dispatch(ResizeBlock(newSize, id)),
+        SetPositionImg: (position: positionType, id: string) => dispatch(SetPositionImg(position, id)),
+        ResizeBlock: (newSize: sizeType, id: string) => dispatch(ResizeBlock(newSize, id)),
+        SetSelectedBlock: (selected: boolean, id: string) => dispatch(SetSelectedBlock(selected, id))
     }
 }
 
-function getStyle(img: cardImageType) {
+function getBlockStyle(img: cardImageType) {
     return {
         width: img.width,
         height: img.height,
@@ -108,6 +103,5 @@ function getStyle(img: cardImageType) {
         top: img.y,
     };
 }
-
 
 export default connect(null, mapDispatchToProps)(Img);

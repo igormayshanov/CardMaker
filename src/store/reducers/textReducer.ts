@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import { cardTextType, kindType } from "../../types/types";
 import { ContentActionType } from "../actionCreators/contentActionCreator";
 import { TextAction } from "../actionCreators/textActionCreator";
@@ -25,10 +24,10 @@ const defaultState: InsertTextType = {
     fontSize: '24'
 }
 
-const changeTextValueById = (contentList: cardTextType[], id: number, value: string): cardTextType[] => {
+const changeTextValueById = (contentList: cardTextType[], id: string, value: string): cardTextType[] => {
     const newContent: cardTextType[] = contentList;
     return newContent.map((item, index) => {
-        if (index == id) {
+        if (item.id == id) {
             return {
                 ...item,
                 value,
@@ -38,10 +37,10 @@ const changeTextValueById = (contentList: cardTextType[], id: number, value: str
     })
 }
 
-const changePositionById = (contentList: cardTextType[], id: number, x: number, y: number): cardTextType[] => {
+const changePositionById = (contentList: cardTextType[], id: string, x: number, y: number): cardTextType[] => {
     const newContent: cardTextType[] = contentList;
     return newContent.map((item, index) => {
-        if (index === id) {
+        if (item.id === id) {
             return {
                 ...item,
                 x,
@@ -74,7 +73,7 @@ export const TextContentReducer = (state: InsertTextType = defaultState, action:
         case TextActionTypes.CHANGE_TEXT:
             return {
                 ...state,
-                TextArray: changeTextValueById(state.TextArray, action.index, action.value)
+                TextArray: changeTextValueById(state.TextArray, action.id, action.value)
             }
         case TextActionTypes.NEW_CARD_TEXT:
             return {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { defaultCanvasSize } from '../../../../constants/constants';
 import { canvasSize } from '../../../../types/types';
 import style from './CanvasSize.module.css';

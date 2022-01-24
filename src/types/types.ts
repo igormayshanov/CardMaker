@@ -51,7 +51,7 @@ export type artObjType = {
 export type cardImageType = {
     // kind: kindType.img;
     src: string;
-    // selected: boolean;
+    selected: boolean;
 } & genericBlockFieldsType & sizeType
 
 export type cardTextType = {
@@ -107,6 +107,7 @@ export type canvasType = {
     ArtObjContent: Array<artObjType>;
     //areaOfCanvas: Array<layoutType>;
     backgroundColor: string;
+    backgroundImg: string | null;
 } & canvasSize
 
 export interface editorType {

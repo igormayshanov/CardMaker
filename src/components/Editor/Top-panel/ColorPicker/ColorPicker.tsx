@@ -4,11 +4,10 @@ import { setBackgroundColor } from '../../../../store/actionCreators/editorActio
 import style from './ColorPicker.module.css';
 
 interface ColorPickerProps {
-    title: string;
     getParam: (value: string) => void;
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({title, getParam}) => {
+const ColorPicker: FC<ColorPickerProps> = ({getParam}) => {
    
     const dispatch = useDispatch();
     function getAttribute (e: React.ChangeEvent<HTMLInputElement>) {
@@ -17,7 +16,6 @@ const ColorPicker: FC<ColorPickerProps> = ({title, getParam}) => {
     }
     return (
         <div className={style.colorPicker}>
-            {title}
             <input className={style.activeColors} type="color" onChange={(e) => getAttribute(e)}/>
         </div>
     );

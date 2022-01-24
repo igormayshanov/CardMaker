@@ -1,4 +1,4 @@
-import { connect, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { RootState } from '../../../../store/store';
 import Img from './Img';
 import style from './ImgCollection.module.css';
@@ -10,14 +10,16 @@ const ImgCollection = (props: StateProps) => {
             {
                 (props.ImgCollection.length > 0) ?
                     props.ImgCollection.map((item, index) => <Img
+                        id={props.ImgCollection[index].id}
                         img={props.ImgCollection[index]}
-                        key={index}
+                        key={`img-${props.ImgCollection[index].id}`}
                         index={index}
                         src={props.ImgCollection[index].src}
                         x={props.ImgCollection[index].x}
                         y={props.ImgCollection[index].y}
                         width={props.ImgCollection[index].width}
                         height={props.ImgCollection[index].height}
+                        selected={props.ImgCollection[index].selected}
                     />) : undefined
             }
         </div>

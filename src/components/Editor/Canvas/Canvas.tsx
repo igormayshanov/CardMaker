@@ -9,9 +9,11 @@ const Canvas = (props: Props) => {
     return (
         <div id='canvas' className={style.canvas}
             style={{
-                background: props.backgroundColor,
-                width: props.width + 'px',
-                height: props.height + 'px',
+                backgroundImage: `url(${props.canvas.backgroundImg})`,
+                background: props.canvas.backgroundColor,
+                width: props.canvas.width + 'px',
+                height: props.canvas.height + 'px',
+                overflow: 'hidden',
             }}>
             <ImgCollection />
             <TextCollection />
@@ -21,9 +23,7 @@ const Canvas = (props: Props) => {
 
 function mapStateToProps(state: RootState) {
     return {
-        backgroundColor: state.backgroundColor,
-        width: state.widthReducer,
-        height: state.heightReducer,
+        canvas: state.canvasReducer,
     };
 };
 

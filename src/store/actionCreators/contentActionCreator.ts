@@ -1,5 +1,4 @@
 import { positionType, sizeType } from "../../types/types";
-import { store } from "../store";
 
 export enum ContentActionType {
   SET_POSITION_BLOCK = "SET_POSITION_BLOCK",
@@ -10,21 +9,22 @@ export enum ContentActionType {
 
 export interface ResizeBlock {
   type: ContentActionType.RESIZE_SELECTED_BLOCK,
-  id: number,
+  id: string,
   width: number,
   height: number,
 }
 
 export interface SetPositionBlock {
   type: ContentActionType.SET_POSITION_BLOCK,
-  id: number,
+  id: string,
   x: number,
   y: number,
 }
 
-interface SetSelectedBlock {
+export interface SetSelectedBlock {
   type: ContentActionType.SET_SELECTED_BLOCK,
   id: string,
+  selected: boolean,
 }
 
 interface ResetSelectedBlock {
@@ -33,10 +33,11 @@ interface ResetSelectedBlock {
 
 export type ContentActions = SetPositionBlock | SetSelectedBlock | ResetSelectedBlock | ResizeBlock;
 
-export function SetSelectedBlock(id: string) {
+export function SetSelectedBlock(isSelected: boolean, id: string) {
   return {
     type: 'SET_SELECTED_BLOCK',
     id: id,
+    selected: isSelected,
   }
 }
 
@@ -46,7 +47,7 @@ export function ResetSelectedBlock() {
   }
 }
 
-export function SetPositionBlock(position: positionType, id: number): SetPositionBlock {
+export function SetPositionBlock(position: positionType, id: string): SetPositionBlock {
   return {
     type: ContentActionType.SET_POSITION_BLOCK,
     id: id,
@@ -55,7 +56,7 @@ export function SetPositionBlock(position: positionType, id: number): SetPositio
   }
 }
 
-export function ResizeBlock(newSize: sizeType, id: number): ResizeBlock {
+export function ResizeBlock(newSize: sizeType, id: string): ResizeBlock {
   return {
     type: ContentActionType.RESIZE_SELECTED_BLOCK,
     id: id,

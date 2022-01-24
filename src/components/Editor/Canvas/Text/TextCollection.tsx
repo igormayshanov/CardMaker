@@ -3,18 +3,19 @@ import { RootState } from '../../../../store/store'
 import Text from './Text';
 
 const TextCollection = (props: StateProps) => {
-    return ( 
+    return (
         <>
-        {
-            (props.TextCollection.TextArray.length > 0) ? 
-                props.TextCollection.TextArray.map((item, index) => <Text 
-                        key={index}
+            {
+                (props.TextCollection.TextArray.length > 0) ?
+                    props.TextCollection.TextArray.map((item, index) => <Text
+                        id={props.TextCollection.TextArray[index].id}
+                        key={`text-${item.id}`}
                         index={index}
-                        text={props.TextCollection.TextArray[index]} 
+                        text={props.TextCollection.TextArray[index]}
                         x={props.TextCollection.TextArray[index].x}
                         y={props.TextCollection.TextArray[index].y}
-                    /> ) : undefined
-        }
+                    />) : undefined
+            }
         </>
     )
 }
