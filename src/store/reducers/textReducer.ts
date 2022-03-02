@@ -16,8 +16,8 @@ type InsertTextType = {
 
 const defaultState: InsertTextType = {
     TextArray: defaultEditor.canvas.TextContent,
-    x: 250,
-    y: 400,
+    x: 50,
+    y: 50,
     fontWeight: '500',
     fontColor: '#000000',
     fontFamily: 'Arial',
@@ -27,7 +27,7 @@ const defaultState: InsertTextType = {
 const changeTextValueById = (contentList: cardTextType[], id: string, value: string): cardTextType[] => {
     const newContent: cardTextType[] = contentList;
     return newContent.map((item, index) => {
-        if (item.id == id) {
+        if (item.id === id) {
             return {
                 ...item,
                 value,

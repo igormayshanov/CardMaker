@@ -5,6 +5,7 @@ import { ResizeBlock, SetSelectedBlock } from "./contentActionCreator";
 export enum ImgActionTypes {
     INSERT_IMG = 'INSERT_IMG',
     SET_POSITION_IMG = "SET_POSITION_IMG",
+    DELETE_IMG = "DELETE_IMG",
 }
 
 interface InsertImgAction {
@@ -25,7 +26,12 @@ interface SetPositionImg {
     y: number,
 }
 
-export type ImgAction = InsertImgAction | SetPositionImg | ResizeBlock | SetSelectedBlock;
+interface DeleteImg {
+    type: ImgActionTypes.DELETE_IMG,
+    id: string,
+}
+
+export type ImgAction = InsertImgAction | SetPositionImg | ResizeBlock | SetSelectedBlock | DeleteImg;
 
 
 export function InsertImg(src: string, width: number, height: number): InsertImgAction {
@@ -50,8 +56,9 @@ export function SetPositionImg(position: positionType, id: string): SetPositionI
     }
 }
 
-
-
-
-
-
+export function DeleteImg (id: string): DeleteImg {
+    return {
+        type: ImgActionTypes.DELETE_IMG,
+        id: id,
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux';
 import { ResizeBlock, SetPositionBlock, SetSelectedBlock } from '../../../../store/actionCreators/contentActionCreator';
-import { SetPositionImg } from '../../../../store/actionCreators/imgActionCreator';
+import { DeleteImg, SetPositionImg } from '../../../../store/actionCreators/imgActionCreator';
 import { RootState } from '../../../../store/store';
 import { cardImageType, cardTextType, positionType, sizeType } from '../../../../types/types';
 import { useDragAndDrop } from '../useDragAndDrop';
@@ -54,6 +54,12 @@ const Img = (props: ImgProps & dispatchPropsType) => {
     const selected: boolean = props.selected === true ? false : true;
     const select: string = props.selected === true ? style.selected : "";
    
+    const handleKeyPress = (e: React.KeyboardEvent<Element>) => {
+        switch(e.code) {
+            case "Delete":
+                return props.DeleteImg(props.id);
+        }
+    };
 
     return (
         <div
@@ -61,6 +67,9 @@ const Img = (props: ImgProps & dispatchPropsType) => {
             style={imgStyle}
             ref={imgBlock}
             onDragStart={(e) => e.preventDefault()}
+            onKeyDown={(e: React.KeyboardEvent) => handleKeyPress(e)}
+            tabIndex={0}
+            key={props.id}
         // style={{
         //     position: "absolute",
         //     display: "block",
@@ -75,7 +84,7 @@ const Img = (props: ImgProps & dispatchPropsType) => {
             <img
                 onClick={(e) => props.SetSelectedBlock(selected, props.id)}
                 className={style.img}
-                key={props.id}
+ 
                 alt=""
                 src={props.src}
             />
@@ -91,7 +100,8 @@ const mapDispatchToProps = (dispatch: Function) => {
     return {
         SetPositionImg: (position: positionType, id: string) => dispatch(SetPositionImg(position, id)),
         ResizeBlock: (newSize: sizeType, id: string) => dispatch(ResizeBlock(newSize, id)),
-        SetSelectedBlock: (selected: boolean, id: string) => dispatch(SetSelectedBlock(selected, id))
+        SetSelectedBlock: (selected: boolean, id: string) => dispatch(SetSelectedBlock(selected, id)),
+        DeleteImg: (id: string) => dispatch(DeleteImg(id))
     }
 }
 

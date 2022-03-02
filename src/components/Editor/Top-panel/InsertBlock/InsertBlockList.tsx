@@ -86,7 +86,7 @@ const InsertBlockList = (props: InsertBlockListProps) => {
         <div>
             <input
                 ref={inputRef}
-                accept=".jpg,.png"
+                accept=".jpg,.png, .svg"
                 type="file"
                 multiple={false}
                 onChange={updateSelectedImage}

@@ -20,6 +20,9 @@ export const ImgContentReducer = (state: cardImageType[] = defaultSate, action: 
                 })
         case ImgActionTypes.SET_POSITION_IMG:
             return changePositionById(state, action.id, action.x, action.y);
+        case ImgActionTypes.DELETE_IMG:
+            return state.filter((element, index) => action.id !== element.id);
+
         case ContentActionType.RESIZE_SELECTED_BLOCK:
             return resizeElementById(state, action.id, action.width, action.height);
         case ContentActionType.SET_SELECTED_BLOCK:
