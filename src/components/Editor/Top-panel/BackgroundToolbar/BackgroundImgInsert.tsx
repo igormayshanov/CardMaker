@@ -50,14 +50,12 @@ const BackgroundImgInsert = (props: BackgroundImgInsertProps) => {
             const image = inputRef.current.files[0];
             if (image) {
                 selectedImageUrlRef.current = window.URL.createObjectURL(image);
-
                 let newImage = new Image();
                 newImage.src = selectedImageUrlRef.current;
                 newImage.onload = function() {
                     props.SetCanvasWidthAction(newImage.width);
                     props.SetCanvasHeightAction(newImage.height);
                 }
-
                 props.SetBackgroundImg(selectedImageUrlRef.current);
             }
             setLoading(true);
